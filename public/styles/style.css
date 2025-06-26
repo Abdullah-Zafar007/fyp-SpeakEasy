@@ -1,0 +1,199 @@
+/* Root Variables for Theme Consistency */
+:root {
+  --primary-color: #008080;
+  --accent-color: #2196F3;
+  --danger-color: #D32F2F;
+  --background-color: #f4f4f9;
+  --card-bg: #fff;
+  --text-color: #333;
+  --shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Base Reset and Typography */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  font-size: 1rem;
+}
+
+/* Header */
+h1 {
+  color: var(--primary-color);
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Card-like Containers */
+#instructions,
+#quizContainer,
+#results {
+  background-color: var(--card-bg);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  padding: 20px 30px;
+  margin-bottom: 30px;
+  width: 100%;
+  max-width: 700px;
+}
+
+/* Instructions Section */
+#instructions h2 {
+  color: var(--primary-color);
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+
+#instructions ul,
+#mistakes ul {
+  list-style-type: none;
+}
+
+#instructions li,
+#mistakes li {
+  font-size: 1.2rem;
+  margin: 10px 0;
+  line-height: 1.6;
+  color: #555;
+}
+
+/* Quiz Form */
+#quizContainer label {
+  font-size: 1.3rem;
+  display: block;
+  margin-bottom: 10px;
+}
+
+#quizContainer select {
+  padding: 10px;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 200px;
+  margin-bottom: 20px;
+  border: 2px solid var(--primary-color);
+  outline: none;
+}
+
+#quizContainer select:focus {
+  border-color: #008080;
+}
+
+#quizContainer button {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 12px 25px;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  max-width: 220px;
+  margin-top: 10px;
+  transition: background-color 0.2s ease;
+}
+
+#quizContainer button:hover {
+  background-color: #008080;
+}
+
+/* Question Prompt */
+#questionSection {
+  margin-top: 20px;
+  text-align: center;
+}
+
+#question {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* Speech Button */
+#startSpeech {
+  background-color: var(--accent-color);
+  color: white;
+  padding: 10px 20px;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.2s ease;
+}
+
+#startSpeech:hover {
+  background-color: #1976D2;
+}
+
+/* Results Section */
+#results {
+  display: none;
+  text-align: center;
+}
+
+#results h2 {
+  color: var(--primary-color);
+  font-size: 2rem;
+}
+
+#score {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 20px;
+  color: #388E3C;
+}
+
+/* Mistakes Section */
+#mistakes {
+  margin-top: 30px;
+}
+
+#mistakes h3 {
+  font-size: 1.3rem;
+  color: var(--danger-color);
+  margin-bottom: 10px;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  #quizContainer {
+    padding: 20px;
+  }
+
+  #question {
+    font-size: 1.2rem;
+  }
+
+  #results h2 {
+    font-size: 1.8rem;
+  }
+
+  #score {
+    font-size: 1.3rem;
+  }
+
+  #mistakes h3 {
+    font-size: 1.1rem;
+  }
+}

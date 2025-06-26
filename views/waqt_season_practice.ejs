@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Waqt & Seasons Pronunciation</title>
+    <link rel="stylesheet" href="/styles/shared.css" />
+    <link rel="stylesheet" href="/styles/navbtn.css">
+  <style>
+    :root {
+  --primary-color: #008080;
+  --secondary-color: #e9f5f5;
+  --text-color: #3b3b3b;
+  --hover-bg: #cce5ff;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--secondary-color);
+  padding: 20px;
+  margin: 0;
+  text-align: center;
+  color: var(--text-color);
+  direction: rtl;
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  padding: 20px 30px;
+  font-size: 1.8rem;
+  cursor: pointer;
+  user-select: none;
+  min-width: 100px;
+  transition: background-color 0.3s, transform 0.2s;
+  color: var(--text-color);
+}
+
+.card:hover {
+  background: var(--hover-bg);
+  transform: scale(1.05);
+}
+
+#feedback {
+  font-size: 1.3rem;
+  margin-top: 20px;
+  min-height: 60px;
+  color: var(--primary-color);
+}
+
+#startBtn {
+  padding: 12px 28px;
+  font-size: 1.3rem;
+  cursor: pointer;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+#startBtn:hover {
+  background-color: #006666;
+}
+
+/* ✅ Responsive Styles */
+@media (max-width: 768px) {
+  .card {
+    font-size: 1.5rem;
+    padding: 16px 24px;
+  }
+
+  #startBtn {
+    font-size: 1.1rem;
+    padding: 10px 22px;
+  }
+
+  #feedback {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    font-size: 1.2rem;
+    min-width: 80px;
+    padding: 14px 18px;
+  }
+
+  #startBtn {
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  #feedback {
+    font-size: 1rem;
+  }
+}
+
+  </style>
+</head>
+<body>
+ <%- include('partials/header') %>
+
+<h1>Waqt aur Mausam - Pronunciation Practice</h1>
+<p>Click a word, listen to the pronunciation, then say it aloud. You’ll receive feedback below.</p>
+
+<h2>🕒 وقت (Time of Day)</h2>
+<div class="cards" id="waqt">
+  <div class="card" data-audio="audio/time/Male/subha.wav" data-word="صبح">صبح</div>
+  <div class="card" data-audio="audio/time/Male/dupehr.wav" data-word="دوپہر">دوپہر</div>
+  <div class="card" data-audio="audio/time/Male/shaam.wav" data-word="شام">شام</div>
+  <div class="card" data-audio="audio/time/Male/raat.wav" data-word="رات">رات</div>
+</div>
+
+<h2>🌤️ موسم (Seasons)</h2>
+<div class="cards" id="seasons">
+  <div class="card" data-audio="audio/season/Male/bahar.wav" data-word="بہار">بہار</div>
+  <div class="card" data-audio="audio/season/Male/grmi.wav" data-word="گرمی">گرمی</div>
+  <div class="card" data-audio="audio/season/Male/srdi.wav" data-word="سردی">سردی</div>
+  <div class="card" data-audio="audio/season/Male/khizaan.wav" data-word="خزاں">خزاں</div>
+</div>
+
+<button id="startBtn" disabled>Start Practice</button>
+
+<div id="feedback"></div>
+
+<script>
+  const cards = document.querySelectorAll('.card');
+  const feedback = document.getElementById('feedback');
+  const startBtn = document.getElementById('startBtn');
+
+  let currentWord = '';
+  let audio = new Audio();
+  let recognition;
+  let recognizing = false;
+
+  if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+    feedback.textContent = 'Your browser does not support the Web Speech API. Please use Google Chrome.';
+  } else {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    recognition = new SpeechRecognition();
+    recognition.lang = 'ur-PK';
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+
+    recognition.onresult = (event) => {
+      const spoken = event.results[0][0].transcript.trim();
+      console.log('You said:', spoken);
+
+      if (spoken === currentWord) {
+        feedback.style.color = 'green';
+        feedback.textContent = '✅ Correct! Well done.';
+      } else {
+        const expected = currentWord.split('');
+        const actual = spoken.split('');
+        let wrongLetters = [];
+
+        expected.forEach((char, index) => {
+          if (actual[index] !== char) {
+            wrongLetters.push(char);
+          }
+        });
+
+        feedback.style.color = 'red';
+        if (wrongLetters.length === 0) {
+          feedback.textContent = `Not exact, but close. You said "${spoken}".`;
+        } else {
+          feedback.textContent = `❌ You said "${spoken}". Incorrect letters: ${wrongLetters.join('، ')}. Focus on these!`;
+        }
+      }
+
+      recognizing = false;
+      startBtn.disabled = false;
+      startBtn.textContent = 'Start Practice';
+    };
+
+    recognition.onerror = (event) => {
+      feedback.style.color = 'red';
+      feedback.textContent = '⚠️ Recognition error. Please try again.';
+      recognizing = false;
+      startBtn.disabled = false;
+      startBtn.textContent = 'Start Practice';
+    };
+  }
+
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      currentWord = card.getAttribute('data-word');
+      const audioSrc = card.getAttribute('data-audio');
+
+      audio.pause();
+      audio.currentTime = 0;
+      audio.src = audioSrc;
+      audio.play().catch(e => {
+        console.error('Audio playback failed:', e);
+        feedback.style.color = 'red';
+        feedback.textContent = '⚠️ Audio file could not be played.';
+      });
+
+      feedback.style.color = 'black';
+      feedback.textContent = `🔊 Try saying: "${currentWord}"`;
+      startBtn.disabled = false;
+    });
+  });
+
+  startBtn.addEventListener('click', () => {
+    if (!currentWord) {
+      feedback.style.color = 'red';
+      feedback.textContent = '📌 Please select a word first.';
+      return;
+    }
+
+    if (recognizing) {
+      recognition.stop();
+      startBtn.textContent = 'Start Practice';
+      recognizing = false;
+    } else {
+      recognition.start();
+      recognizing = true;
+      startBtn.disabled = true;
+      startBtn.textContent = '🎤 Listening...';
+      feedback.textContent = `Please pronounce: "${currentWord}"`;
+    }
+  });
+</script>
+
+</body>
+</html>

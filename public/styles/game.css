@@ -1,0 +1,81 @@
+body {
+  font-family: 'Noto Naskh Urdu', serif;
+  background-color: #e9f5f5;
+  color: #3b3b3b;
+  text-align: center;
+  padding: 2rem;
+  direction: rtl;
+}
+
+.game-container {
+  max-width: 700px;
+  margin: auto;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  color: #008080;
+  margin-bottom: 1.5rem;
+}
+
+.sound-box button {
+  background-color: #008080;
+  color: #fff;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.options {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.option {
+  cursor: pointer;
+  width: 30%;
+  padding: 1rem;
+  border: 2px solid transparent;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.option:hover {
+  border-color: #008080;
+  background-color: #f0fefe;
+}
+
+.option img {
+  width: 100%;
+  max-width: 120px;
+  height: auto;
+  border-radius: 10px;
+}
+
+#feedback {
+  margin-top: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.option.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+#restart-btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: teal;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  margin-top: 10px;
+  cursor: pointer;
+}

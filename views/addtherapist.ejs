@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Therapist Card</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary-color: #008080;
+            --secondary-color: #e9f5f5;
+            --text-color: #3b3b3b;
+        }
+    </style>
+</head>
+<body class="bg-[var(--secondary-color)] text-[var(--text-color)] font-[Poppins] min-h-screen flex items-center justify-center">
+    <div class="w-full max-w-md bg-white rounded-lg shadow-lg p-6">
+        <h2 class="text-2xl font-bold text-[var(--primary-color)] mb-6 text-center">Add Therapist </h2>
+        <form id="registerForm" method="POST" action="/create" enctype="multipart/form-data" class="space-y-4">
+            <!-- Name -->
+            <div>
+                <label for="regName" class="block text-sm font-medium text-gray-700">Name</label>
+                <input type="text" id="regName" name="name" placeholder="Enter name" required 
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)]">
+            </div>
+        
+            <!-- Email -->
+            <div>
+                <label for="regEmail" class="block text-sm font-medium text-gray-700">Email</label>
+                <input type="email" id="regEmail" name="email" placeholder="Enter email" required 
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)]">
+            </div>
+        
+            <!-- Image Upload -->
+            <div>
+                <label for="regImage" class="block text-sm font-medium text-gray-700">Image</label>
+                <input type="file" id="regImage" name="image" required 
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)]">
+            </div>
+        
+            <!-- Specialization -->
+            <div>
+                <label for="regSpecialization" class="block text-sm font-medium text-gray-700">Specialization</label>
+                <input type="text" id="regSpecialization" name="specialization" placeholder="Enter specialization" 
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)]">
+            </div>
+        
+            <!-- Experience -->
+            <div>
+                <label for="regExperience" class="block text-sm font-medium text-gray-700">Experience (years)</label>
+                <input type="number" id="regExperience" name="experience" placeholder="Enter experience in years" min="0" 
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)]">
+            </div>
+        
+            <!-- Rating -->
+            <div>
+                <label for="regRating" class="block text-sm font-medium text-gray-700">Rating (1-5)</label>
+                <input type="number" id="regRating" name="rating" placeholder="Enter rating" min="1" max="5" step="0.1" 
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)]">
+            </div>
+        
+            <!-- Submit Button -->
+            <div class="text-center">
+                <button type="submit" class="w-full bg-[var(--primary-color)] text-white py-2 px-4 rounded-lg hover:bg-teal-600 transition-all">
+                    Add
+                </button>
+            </div>
+        </form>
+        
+    </div>
+</body>
+</html>

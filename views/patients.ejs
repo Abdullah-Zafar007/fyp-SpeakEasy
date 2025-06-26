@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Patients</title>
+    <link rel="stylesheet" href="/styles/navbtn.css">
+    <link rel="stylesheet" href="/styles/shared.css">
+
+    <style>
+         :root {
+            --primary-color: #008080; /* Teal */
+            --secondary-color: #e9f5f5; /* Light Teal */
+            --text-color: #3b3b3b; /* Dark Grey */
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: #e9f5f5;
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+        th {
+            background-color: #008080;
+            color: white;
+        }
+        a.button {
+            background-color: #008080;
+            color: white;
+            padding: 6px 12px;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        a.button:hover {
+            background-color: #006666;
+        }
+    </style>
+</head>
+<body>
+     <%- include('partials/header') %>
+        <%- include('partials/navbtn') %>
+    <h1 style="color: #008080;">Patient Records</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Child's Name</th>
+                <th>Parent Name</th>
+                <th>Phone</th>
+                <th>Age</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% patients.forEach(patient => { %>
+                <tr>
+                    <td><%= patient.name %></td>
+                    <td><%= patient.pname %></td>
+                    <td><%= patient.phone %></td>
+                    <td><%= patient.age %></td>
+                    <td>
+                        <a class="button" href="/report/<%= patient._id %>">View Report</a>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+   
+     <%- include('partials/footer') %>
+</body>
+</html>

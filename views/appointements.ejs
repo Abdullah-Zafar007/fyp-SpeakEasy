@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech Therapist Appointment Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .appointment-form {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input, textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        /* Responsive design for smaller screens */
+        @media (max-width: 600px) {
+            .appointment-form {
+                padding: 15px;
+            }
+
+            button {
+                font-size: 14px;
+            }
+        }
+
+        /* Focus styles for accessibility */
+        input:focus, textarea:focus, button:focus {
+            outline: 3px solid #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <div class="appointment-form">
+        <h2>Speech Therapist Appointment Form</h2>
+        <form action="/appointements" method="POST">
+            <label for="fullName">Full Name:</label>
+            <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name" aria-label="Full Name">
+
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required placeholder="Enter your email address" aria-label="Email Address">
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number" aria-label="Phone Number" pattern="[0-9]{11}">
+
+            <label for="preferredDate">Preferred Appointment Date:</label>
+            <input type="date" id="preferredDate" name="preferredDate" required aria-label="Preferred Appointment Date">
+
+            <label for="preferredTime">Preferred Appointment Time:</label>
+            <input type="time" id="preferredTime" name="preferredTime" required aria-label="Preferred Appointment Time">
+
+            <label for="patientAge">Patient's Age:</label>
+            <input type="number" id="patientAge" name="patientAge" required placeholder="Enter patient's age" aria-label="Patient's Age">
+
+            <label for="symptoms">Symptoms/Concerns:</label>
+            <textarea id="symptoms" name="symptoms" rows="4" required placeholder="Describe the symptoms or concerns" aria-label="Symptoms/Concerns"></textarea>
+
+            <label for="therapistPreference">Preferred Therapist (if any):</label>
+            <input type="text" id="therapistPreference" name="therapistPreference" placeholder="Enter therapist's name (optional)" aria-label="Preferred Therapist">
+
+            <button type="submit">Book Appointment</button>
+        </form>
+    </div>
+</body>
+</html>

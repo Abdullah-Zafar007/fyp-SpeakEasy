@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Urdu Jumlay Practice</title>
+    <link rel="stylesheet" href="/styles/shared.css" />
+    <link rel="stylesheet" href="/styles/navbtn.css">
+  <style>
+    :root {
+      --primary-color: #008080;
+      --secondary-color: #e9f5f5;
+      --text-color: #3b3b3b;
+      --highlight-bg: #fff9c4;
+    }
+
+    body {
+      font-family: 'Noto Nastaliq Urdu', 'Arial', sans-serif;
+      background-color: var(--secondary-color);
+      color: var(--text-color);
+      padding: 20px;
+      margin: 0;
+      direction: rtl;
+    }
+
+    h2 {
+      text-align: center;
+      color: var(--text-color);
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .main-card {
+      max-width: 800px;
+      margin: 20px auto;
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .card {
+      background-color: #d7f0f0;
+      border: 1px solid var(--primary-color);
+      padding: 15px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      position: relative;
+      font-size: 18px;
+      color: var(--text-color);
+    }
+
+    .card:hover {
+      background-color: #c1ecec;
+    }
+
+    .practice-btn {
+      margin-top: 10px;
+      background-color: var(--primary-color);
+      border: none;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    .practice-btn:hover:not(:disabled) {
+      background-color: #006666;
+    }
+
+    .practice-btn:disabled {
+      background: #999;
+      cursor: not-allowed;
+    }
+
+    #report {
+      max-width: 800px;
+      margin: 20px auto;
+      background-color: var(--highlight-bg);
+      padding: 18px;
+      border-radius: 10px;
+      color: var(--text-color);
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    /* ✅ Responsive tweaks */
+    @media (max-width: 768px) {
+
+      .main-card,
+      #report {
+        padding: 16px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .card {
+        font-size: 16px;
+        padding: 12px;
+      }
+
+      .practice-btn {
+        font-size: 14px;
+        padding: 6px 12px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        font-size: 15px;
+        padding: 10px;
+      }
+
+      .practice-btn {
+        font-size: 14px;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+ <%- include('partials/header') %>
+  <%- include('partials/navbtn') %>
+
+  <h2>آسان جملے</h2>
+  <div class="main-card" id="Easy">
+    <section class="cards">
+      <div class="card" data-audio="audio/Jumly/easy/ap kysy hyn.wav" data-text="آپ کیسے ہیں؟">
+        آپ کیسے ہیں؟
+        <button class="practice-btn">Practice</button>
+      </div>
+      <div class="card" data-audio="audio/Jumly/easy/hum dost hain.wav" data-text="ہم دوست ہیں۔">
+        ہم دوست ہیں۔
+        <button class="practice-btn">Practice</button>
+      </div>
+      <div class="card" data-audio="audio/Jumly/easy/khana tyar hai.wav" data-text="کھانا تیار ہے۔">
+        کھانا تیار ہے۔
+        <button class="practice-btn">Practice</button>
+      </div>
+      <div class="card" data-audio="\audio\Jumly\high\achy khyalat insan ky kirdar ko bulandi ata krty hyn .wav"> اچھے
+        خیالات انسان کے کردار کو بلندی عطا کرتے ہیں۔
+        <button class="practice-btn">Practice</button>
+
+      </div>
+
+      <div class="card"
+        data-audio="\audio\Jumly\high\aman aur skoon ky bgair khushhal Zindagi ka taswur namumkin h .wav"> امن اور سکون
+        کے بغیر خوشحال زندگی کا تصور ناممکن ہے۔
+        <button class="practice-btn">Practice</button>
+
+      </div>
+      <div class="card"
+        data-audio="\audio\Jumly\high\khuwabon ki taabeer whi log paaty hyn Jo jagty huai mehnt krty hyn. .wav"> خوابوں
+        کی تعبیر وہی لوگ پاتے ہیں جو جاگتے ہوئے محنت کرتے ہیں۔
+        <button class="practice-btn">Practice</button>
+
+      </div>
+      <div class="card" data-audio="\audio\Jumly\high\kirdar ki pakeezgi insan ko bulandiyon tk pohncha skti h. .wav">
+        کردار کی پاکیزگی انسان کو بلندیوں تک پہنچا سکتی ہے۔
+        <button class="practice-btn">Practice</button>
+
+      </div>
+      <div class="card" data-audio="\audio\Jumly\high\muhabbt wo dolat h Jo tkseem krny sy bhrti h.wav"> محبت وہ دولت ہے
+        جو تقسیم کرنے سے بڑھتی ہے۔
+        <button class="practice-btn">Practice</button>
+
+      </div>
+      <div class="card" data-audio="\audio\Jumly\high\sbr aur istqamt hr toofan ka mukabla krny ka hunr dyti hyn .wav">
+        صبر اور استقامت ہر طوفان کا مقابلہ کرنے کا ہنر دیتی ہیں۔
+        <button class="practice-btn">Practice</button>
+
+      </div>
+      <div class="card" data-audio="\audio\Jumly\high\schai ki takt insan ko hr mushkil sy Nikal skti h. .wav"> سچائی کی
+        طاقت انسان کو ہر مشکل سے نکال سکتی ہے۔
+        <button class="practice-btn">Practice</button>
+
+      </div>
+      <div class="card" data-audio="\audio\Jumly\high\wqt ka zya Zindagi ky qeemti lmhat ko bemksd krdyta h .wav"> ۔ وقت
+        کا ضیاع زندگی کے قیمتی لمحات کو بے مقصد کر دیتا ہے
+        <button class="practice-btn">Practice</button>
+
+      </div>
+      <div class="card" data-audio="\audio\Jumly\high\zhant srf ilm main nhi, blky aml myn bhi jhltki h.wav"> ذہانت صرف
+        علم میں نہیں، بلکہ عمل میں بھی جھلکتی ہے۔
+        <button class="practice-btn">Practice</button>
+
+      </div>
+      <div class="card"
+        data-audio="\audio\Jumly\high\Zindagi ky sfr myn hr nakami aik nai kamyabi ka pysh-e- khyma bn skti h. .wav">
+        زندگی کے سفر میں ہر ناکامی ایک نئی کامیابی کا پیش خیمہ بن سکتی ہے۔
+        <button class="practice-btn">Practice</button>
+
+      </div>
+    </section>
+  </div>
+
+  <div id="report"></div>
+
+  <script>
+    // Play audio when sentence clicked (excluding practice button)
+    document.querySelectorAll(".card").forEach(card => {
+      card.addEventListener("click", e => {
+        if (e.target.classList.contains("practice-btn")) return; // ignore practice button click
+
+        const audioSrc = card.getAttribute("data-audio");
+        if (audioSrc) {
+          const audio = new Audio(audioSrc.replace(/\\/g, "/"));
+          audio.play();
+        }
+      });
+    });
+
+    // Speech Recognition Setup
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      alert("آپ کے براؤزر میں Speech Recognition سپورٹ نہیں ہے۔");
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.lang = 'ur-PK'; // Urdu Pakistan locale
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+
+    const reportDiv = document.getElementById("report");
+
+    function compareTexts(target, spoken) {
+      // Normalize (remove spaces & punctuation for simple letter comparison)
+      const normalize = text => text.replace(/[۔،?!،،؟\s]/g, '').toLowerCase();
+
+      let normTarget = normalize(target);
+      let normSpoken = normalize(spoken);
+
+      let report = "";
+      if (normTarget === normSpoken) {
+        report = "زبردست! آپ نے جملہ بالکل صحیح بولا۔ 🎉";
+      } else {
+        // Identify letters that don't match
+        let differences = [];
+        let maxLen = Math.max(normTarget.length, normSpoken.length);
+        for (let i = 0; i < maxLen; i++) {
+          if (normTarget[i] !== normSpoken[i]) {
+            differences.push(normTarget[i] || '[ختم]');
+          }
+        }
+        report = `آپ نے کچھ الفاظ غلط بولے ہیں۔ ممکنہ غلطی والے حرف/الفاظ: <strong>${differences.join(', ')}</strong><br>براہ کرم ان پر توجہ دیں اور دوبارہ کوشش کریں۔`;
+      }
+      return report;
+    }
+
+    // Handle practice button click
+    document.querySelectorAll(".practice-btn").forEach(btn => {
+      btn.addEventListener("click", async (e) => {
+        e.stopPropagation(); // Prevent parent card audio play
+        const card = e.target.closest(".card");
+        const targetText = card.getAttribute("data-text");
+
+        btn.disabled = true;
+        btn.textContent = "سن رہا ہوں... بولیں";
+
+        recognition.start();
+
+        recognition.onresult = (event) => {
+          const spokenText = event.results[0][0].transcript;
+          console.log("User said:", spokenText);
+          const feedback = compareTexts(targetText, spokenText);
+          reportDiv.innerHTML = `<h3>آپ نے کہا: "${spokenText}"</h3><p>${feedback}</p>`;
+          btn.disabled = false;
+          btn.textContent = "Practice";
+        };
+
+        recognition.onerror = (event) => {
+          reportDiv.textContent = "معذرت، آواز کی شناخت نہیں ہو سکی۔ دوبارہ کوشش کریں۔";
+          btn.disabled = false;
+          btn.textContent = "Practice";
+        };
+
+        recognition.onend = () => {
+          if (btn.disabled) { // If user stopped speaking without result
+            btn.disabled = false;
+            btn.textContent = "Practice";
+          }
+        };
+      });
+    });
+  </script>
+  <%- include('partials/footer') %>
+</body>
+
+</html>

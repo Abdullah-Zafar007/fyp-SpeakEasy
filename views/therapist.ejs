@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Therapist Dashboard</title>
+    <link rel="stylesheet" href="/styles/interface.css">
+    <link rel="stylesheet" href="/styles/shared.css">
+    <link rel="stylesheet" href="/styles/navbtn.css">
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+     <%- include('partials/header') %>
+
+    <div class="container">
+
+     <main class="content" id="content">
+    <section class="header">
+        <h2>Welcome</h2>
+        <h3>Journey toward better communication starts here</h3>
+        <p>Access your lessons, track your progress, take quizzes, and book appointments.</p>
+         <%- include('partials/navbtn') %>
+    </section>
+
+  
+
+    <section class="cards">
+        <div class="card" id="patients-list">
+            <h3>View Patients List </h3>
+            <p>Explore interactive lessons to improve your Urdu pronunciation, from basics to advanced.</p>
+        </div>
+        <!-- <div class="card" id="Add-lessons">
+            <h3>Add Lessons</h3>
+            <p>Engage in fun speech therapy games designed to enhance your pronunciation skills.</p>
+        </div>
+        <div class="card" id="patient-report">
+            <h3>View Patient Reports</h3>
+            <p>Take quizzes to test your Urdu pronunciation accuracy and receive detailed feedback.</p>
+        </div> -->
+       
+    </section>
+</main>
+    </div>
+   
+     <%- include('partials/footer') %>
+
+</body>
+ <script>
+        document.getElementById("patients-list").addEventListener("click", function () {
+            window.location.href = "/patientdetail"; // Redirect to the patients list page
+        });
+        document.getElementById("therapist-appointment").addEventListener("click", function () {
+            window.location.href = "/appointements"; // Redirect to the patients list page
+        });
+    </script>
+</html>

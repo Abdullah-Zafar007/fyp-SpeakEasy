@@ -1,0 +1,217 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #012b30;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Container */
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    max-width: 1000px;
+    background-color: #012b30;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Card Section */
+.card {
+    flex: 1;
+    background-color: #043b40;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-content h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+    line-height: 1.4;
+}
+
+.card-content p {
+    font-size: 1rem;
+    margin-bottom: 30px;
+    color: #b0d3d8;
+}
+
+/* Form Elements */
+.input-field,
+.dropdown {
+    width: 100%;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 8px;
+    background-color: #d7f0f2;
+    color: #012b30;
+    font-size: 1rem;
+}
+
+.input-field:focus,
+.dropdown:focus {
+    outline: 2px solid #50a5a9;
+}
+
+.login-button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: #50a5a9;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-button:hover {
+    background-color: #399095;
+}
+
+.forgot-password,
+.create-account {
+    margin-top: 10px;
+    color: #b0d3d8;
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+
+.forgot-password:hover,
+.create-account:hover {
+    text-decoration: underline;
+}
+
+.create-account {
+    margin-left: 200px;
+}
+
+/* Login Link in Registration */
+.r-login {
+    margin-top: 20px;
+    color: #b0d3d8;
+    font-size: 0.9rem;
+    text-align: center;
+    margin-left: 120px;
+}
+
+.r-login a {
+    color: #50a5a9;
+}
+
+.r-login a:hover {
+    text-decoration: none;
+}
+
+/* Illustration Section */
+.illustration {
+    flex: 1;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.illustration img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ========== RESPONSIVE ========== */
+
+/* Tablets */
+@media (max-width: 992px) {
+    .container {
+        flex-direction: column;
+        width: 90%;
+    }
+
+    .card,
+    .illustration {
+        width: 100%;
+        padding: 30px;
+        text-align: center;
+    }
+
+    .card {
+        align-items: center;
+    }
+
+    .card-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .card-content p {
+        font-size: 0.95rem;
+    }
+
+    .create-account {
+        text-align: center;
+        padding-left: 0;
+    }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+    body {
+        align-items: flex-start;
+    }
+
+    .container {
+        flex-direction: column;
+        width: 100%;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .card {
+        padding: 20px;
+    }
+
+    .card-content h1 {
+        font-size: 1.5rem;
+    }
+
+    .card-content p,
+    .input-field,
+    .login-button,
+    .dropdown {
+        font-size: 0.95rem;
+    }
+
+    .illustration {
+        display: none;
+    }
+}
+/* Large Screens */
+@media (min-width: 1200px) {
+    .container {
+        width: 70%;
+    }
+
+    .card-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .card-content p {
+        font-size: 1.1rem;
+    }
+}

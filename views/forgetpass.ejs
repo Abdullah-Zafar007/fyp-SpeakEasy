@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgot Password - Urdu Speech Therapy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            background-color: #1b2b38;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #fff;
+        }
+
+        .forgot-password-container {
+            background-color: #233945;
+            width: 400px;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .forgot-password-container h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .forgot-password-container p {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .forgot-password-container input {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .forgot-password-container button {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: #00bfa6;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .forgot-password-container button:hover {
+            background-color: #00997a;
+        }
+
+        .forgot-password-container a {
+            display: block;
+            margin-top: 1rem;
+            color: #00bfa6;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .forgot-password-container a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="forgot-password-container">
+        <h1>Forgot Password</h1>
+        <p>Enter your email address below to reset your password.</p>
+        <form id="forgot-password-form">
+            <input type="email" id="email" name="email" placeholder="Email Address" required>
+            <button type="submit">Send Reset Link</button>
+        </form>
+        <a href="login.html">Back to Login</a>
+    </div>
+
+    <script>
+        document.getElementById("forgot-password-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const email = document.getElementById("email").value;
+
+            fetch("http://localhost:4200/forgot-password", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email }),
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Failed to send reset link");
+                }
+                return response.json();
+            })
+            .then(data => {
+                alert("Password reset link has been sent to your email.");
+            })
+            .catch(error => {
+                alert(error.message || "An error occurred");
+            });
+        });
+    </script>
+</body>
+</html>

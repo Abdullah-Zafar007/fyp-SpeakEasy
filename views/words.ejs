@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech Therapy</title>
+    <link rel="stylesheet" href="/styles/navbtn.css">
+    <style>
+ :root {
+    --primary-color: #008080;
+    --secondary-color: #e9f5f5;
+    --text-color: #3b3b3b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #FFFFFF;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    color: var(--text-color);
+}
+
+/* Sidebar */
+.sidebar {
+    width: 12%;
+    background: var(--primary-color);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    transition: width 0.3s ease;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    text-align: center;
+    color: white;
+    position: relative;
+}
+
+
+
+/* Menu */
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.menu-item {
+    font-size: 18px;
+    cursor: pointer;
+    padding: 10px 5px;
+    text-align: center;
+    border-radius: 5px;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.menu-item:hover,
+.menu-item.active {
+    background: white;
+    color: var(--primary-color);
+}
+
+/* Content */
+.content {
+    flex: 1;
+    background: var(--secondary-color);
+    padding: 40px 60px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.header {
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+.header h2 {
+    font-size: 36px;
+    color: var(--primary-color);
+}
+
+.header p {
+    font-size: 16px;
+    color: #7a7a7a;
+    margin-top: 5px;
+}
+
+/* Main Card */
+.main-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    display: none;
+}
+
+.main-card.active {
+    display: block;
+}
+
+/* Cards Grid */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ========================
+   Responsive Design
+========================= */
+
+/* Tablets and smaller */
+@media screen and (max-width: 992px) {
+    .sidebar {
+        width: 18%;
+    }
+
+    .content {
+        padding: 30px 40px;
+    }
+
+    .header h2 {
+        font-size: 28px;
+    }
+
+    .card {
+        font-size: 1rem;
+    }
+
+    .main-card {
+        font-size: 1.2rem;
+    }
+}
+
+/* Mobile View */
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .menu {
+        flex-direction: row;
+        gap: 10px;
+    }
+
+    .logo {
+        display: none;
+    }
+
+    .content {
+        padding: 20px;
+    }
+
+    .header h2 {
+        font-size: 24px;
+    }
+
+    .cards {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+<div class="logo">
+  <img src="/images/logo.png" alt="UST Logo" style="height: 80px;" />
+</div>
+            <div class="menu">
+                <div class="menu-item active" data-section="counting">Counting (گنتی)</div>
+                <div class="menu-item" data-section="week">Week (ہفتے)</div>
+                <div class="menu-item" data-section="time">Time (وقت)</div>
+                <div class="menu-item" data-section="seasons">Seasons (موسم)</div>
+                <div class="menu-item" data-section="months">Months (مہینے)</div>
+                <div class="menu-item" data-section="random">Random Words (منتخب الفاظ)</div>
+                
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <header class="header">
+                <h2 id="section-title">Counting (گنتی)</h2>
+                <p>Click on a category from the sidebar to practice speech exercises.</p>
+            </header>
+            <!-- Sections -->
+            <div id="counting" class="main-card active">
+                <section class="cards">
+                    <div class="card" data-audio="/audio/Counting/Male/sifr.wav">صفر</div>
+                    <div class="card" data-audio="/audio/Counting/Male/aik.wav">ایک</div>
+                    <div class="card" data-audio="/audio/Counting/Male/do.wav">دو</div>
+                    <div class="card" data-audio="/audio/Counting/Male/teen.wav">تین</div>
+                    <div class="card" data-audio="/audio/Counting/Male/chaar.wav">چار</div>
+                    <div class="card" data-audio="/audio/Counting/Male/panch.wav">پانچ</div>
+                    <div class="card" data-audio="/audio/Counting/Male/chay.wav">چھ</div>
+                    <div class="card" data-audio="/audio/Counting/Male/saath.wav">سات</div>
+                    <div class="card" data-audio="/audio/Counting/Male/aath.wav">آٹھ</div>
+                    <div class="card" data-audio="/audio/Counting/Male/no.mp3.wav">نو</div>
+                    
+                </section>
+            </div>
+
+            <div id="week" class="main-card">
+                <section class="cards">
+                    <div class="card" data-audio="\audio\week\Male\somwar.wav">پیر</div>
+                    <div class="card" data-audio="\audio\week\Male\mangal.wav">منگل</div>
+                    <div class="card" data-audio="\audio\week\Male\budh.wav">بدھ</div>
+                    <div class="card" data-audio="\audio\week\Male\jumyrat.wav">جمعرات</div>
+                    <div class="card" data-audio="\audio\week\Male\jummah.wav">جمعہ</div>
+                    <div class="card" data-audio="\audio\week\Male\hafta.wav">ہفتہ</div>
+                    <div class="card" data-audio="\audio\week\Male\itwar.wav">اتوار</div>
+                </section>
+            </div>
+
+            <div id="time" class="main-card">
+                <section class="cards">
+                    <div class="card" data-audio="\audio\time\Male\subha.wav">صبح</div>
+                    <div class="card" data-audio="\audio\time\Male\dupehr.wav">دوپہر</div>
+                    <div class="card" data-audio="\audio\time\Male\shaam.wav">شام</div>
+                    <div class="card" data-audio="\audio\time\Male\raat.wav">رات</div>
+                    
+                </section>
+            </div>
+
+            <div id="seasons" class="main-card">
+                <section class="cards">
+                    <div class="card" data-audio="\audio\season\Male\bahar.wav">بہار</div>
+                    <div class="card" data-audio="\audio\season\Male\grmi.wav">گرمی</div>
+                    <div class="card" data-audio="\audio\season\Male\srdi.wav">سردی</div>
+                    <div class="card" data-audio="\audio\season\Male\khizaan.wav">خزاں</div>
+                    
+                </section>
+            </div>
+
+            <div id="months" class="main-card">
+                <section class="cards">
+                    <div class="card" data-audio="\audio\months\Male\january.wav">جنوری</div>
+                    <div class="card" data-audio="\audio\months\Male\february.wav">فروری</div>
+                    <div class="card" data-audio="\audio\months\Male\march.wav">مارچ</div>
+                    <div class="card" data-audio="\audio\months\Male\april.wav">اپریل</div>
+                    <div class="card" data-audio="\audio\months\Male\may.wav">مئ</div>
+                    <div class="card" data-audio="\audio\months\Male\june.wav">جون</div>
+                    <div class="card" data-audio="\audio\months\Male\july.wav">جولائ</div>
+                    <div class="card" data-audio="\audio\months\Male\august.wav">اگست</div>
+                    <div class="card" data-audio="\audio\months\Male\september.wav">سپتمبر</div>
+                    <div class="card" data-audio="\audio\months\Male\october.wav">اکتوبر</div>
+                    <div class="card" data-audio="\audio\months\Male\november.wav">نومبر</div>
+                    <div class="card" data-audio="\audio\months\Male\december.wav">دسمبر</div>
+                </section>
+            </div>
+
+            <div id="random" class="main-card">
+                <section class="cards">
+                
+                    <div class="card" data-audio="/assets/audio/random/Male/main.wav">میں</div>
+                    <div class="card" data-audio="\audio\random\Male\hum.wav">ہم</div>
+                    <div class="card" data-audio="\audio\random\Male\tum.wav">تم</div>
+                    <div class="card" data-audio="\audio\random\Male\aap.wav">آپ</div>
+                    <div class="card" data-audio="\audio\random\Male\aur.wav">اور</div>
+                    <div class="card" data-audio="\audio\random\Male\bhi.wav">بھی</div>
+                    <div class="card" data-audio="\audio\random\Male\yh.wav">یہ</div>
+                    <div class="card" data-audio="\audio\random\Male\nhi.wav">نہیں</div>
+                    <div class="card" data-audio="\audio\random\Male\han.wav">ہاں</div>
+                    <div class="card" data-audio="\audio\random\Male\kya.wav">کیا</div>
+                    <div class="card" data-audio="\audio\random\Male\hasil.wav">حاصل</div>
+                    <div class="card" data-audio="\audio\random\Male\sab.wav">سب</div>
+                    <div class="card" data-audio="\audio\random\Male\karna.wav">کرنا</div>
+                    <div class="card" data-audio="\audio\random\Male\jana.wav">جانا</div>
+                    <div class="card" data-audio="\audio\random\Male\har.wav">ہر</div>
+                    <div class="card" data-audio="\audio\random\Male\khan.wav">خان</div>
+                    <div class="card" data-audio="\audio\random\Male\pehly.wav">پہلے</div>
+                    <div class="card" data-audio="\audio\random\Male\kuch.wav">کچھ</div>
+                    <div class="card" data-audio="\audio\random\Male\sirf.wav">صرف</div>
+                    <div class="card" data-audio="\audio\random\Male\saal.wav">سال</div>
+                    <div class="card" data-audio="\audio\random\Male\maheena.wav">مہینہ</div>
+                    <div class="card" data-audio="\audio\random\Male\wja.wav">وجہ</div>
+                    <div class="card" data-audio="\audio\random\Male\km.wav">کم</div>
+                    <div class="card" data-audio="\audio\random\Male\zaaid.wav">ذائد</div>
+                    <div class="card" data-audio="\audio\random\Male\jang.wav">جنگ</div>
+                    <div class="card" data-audio="\audio\random\Male\team.wav">ٹیم</div>
+                    <div class="card" data-audio="\audio\random\Male\sadar.wav">صدر</div>
+                    <div class="card" data-audio="\audio\random\Male\mutabiq.wav">مطابق</div>
+                    <div class="card" data-audio="\audio\random\Male\tmam.wav">تمام</div>
+                    <div class="card" data-audio="\audio\random\Male\khilaf.wav">خلاف</div>
+                    <div class="card" data-audio="\audio\random\Male\sath.wav">ساتھ</div>
+                    <div class="card" data-audio="\audio\random\Male\wali.wav">والی</div>
+                    <div class="card" data-audio="\audio\random\Male\taraf.wav">طرف</div>
+                    <div class="card" data-audio="\audio\random\Male\phr.wav">پھر</div>
+                    <div class="card" data-audio="\audio\random\Male\duniya.wav">دنیا</div>
+                    <div class="card" data-audio="\audio\random\Male\log.wav">لوگ</div>
+                    <div class="card" data-audio="\audio\random\Male\shuruh.wav">شروع</div>
+                    <div class="card" data-audio="\audio\random\Male\afrad.wav">افراد</div>
+                    <div class="card" data-audio="\audio\random\Male\wazeer.wav">وزیر</div>
+                    <div class="card" data-audio="\audio\random\Male\awam.wav">عوام</div>
+                    <div class="card" data-audio="\audio\random\Male\amal.wav">عمل</div>
+                  
+                </section>
+            </div>
+             <%- include('partials/navbtn') %>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle sidebar menu item click
+            const menuItems = document.querySelectorAll('.menu-item');
+            menuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Remove active class from all menu items
+                    menuItems.forEach(i => i.classList.remove('active'));
+                    // Add active class to clicked menu item
+                    item.classList.add('active');
+    
+                    // Hide all sections
+                    const sections = document.querySelectorAll('.main-card');
+                    sections.forEach(section => section.classList.remove('active'));
+    
+                    // Show the corresponding section
+                    const sectionId = item.getAttribute('data-section');
+                    const activeSection = document.getElementById(sectionId);
+                    activeSection.classList.add('active');
+    
+                    // Update section title
+                    const sectionTitle = document.getElementById('section-title');
+                    sectionTitle.textContent = item.textContent;
+                });
+            });
+    
+            // Handle card click to play audio
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const audioSrc = card.getAttribute('data-audio');
+                    const audio = new Audio(audioSrc);
+                    audio.play();
+                });
+            });
+        });
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,132 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #2c3e50;
+    color: white;
+    padding: 20px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.menu {
+    margin-top: 30px;
+}
+
+.menu-item {
+    margin: 10px 0;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: #ecf0f1;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.header h2 {
+    font-size: 32px;
+}
+
+.header p {
+    font-size: 16px;
+    color: #7f8c8d;
+}
+
+.user-profile {
+    margin-top: 20px;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+/* Main Card Styles */
+.main-card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cards {
+    display: flex;
+    flex-direction: column; /* Stack heading and cards vertically */
+    align-items: center; /* Center-align content */
+    margin-bottom: 30px;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 24px;
+    color: #34495e;
+}
+
+.column {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px; /* Add space between cards */
+    padding: 10px 0;
+}
+
+.card {
+    background-color: #3498db;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 150px;
+}
+
+.card:hover {
+    background-color: #2980b9;
+}
+
+.card:active {
+    background-color: #1f6f9e;
+}
+
+/* Media Query for Responsive Design */
+@media (max-width: 768px) {
+    .cards {
+        display: flex;
+        flex-direction: column; /* Ensure responsiveness with column layout */
+    }
+
+    .sidebar {
+        width: 200px;
+    }
+
+    .header h2 {
+        font-size: 28px;
+    }
+
+    .header p {
+        font-size: 14px;
+    }
+}

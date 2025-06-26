@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech Therapy UI</title>
+    <link rel="stylesheet" href="/styles/interface.css">
+    <!-- <link rel="stylesheet" href="/styles/sidebar.css"> -->
+    <link rel="stylesheet" href="/styles/shared.css">
+    <link rel="stylesheet" href="/styles/navbtn.css">
+  
+<style>
+    :root {
+    --primary-color: #008080; /* Teal */
+    --secondary-color: #e9f5f5; /* Light Teal */
+    --text-color: #3b3b3b; /* Dark Grey */
+}
+
+/* Global Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    background-color: var(--secondary-color);
+}
+
+/* Container for layout */
+.container {
+    display: flex;
+    width: 100%;
+}
+
+/* Content Area */
+.content {
+    margin-left: 250px;
+    padding: 20px;
+    width: 100%;
+    transition: margin-left 0.3s ease;
+    background-color: var(--secondary-color);
+}
+
+.content.shift {
+    margin-left: 0;
+}
+
+/* Card Container */
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+/* Single Card */
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: calc(33.33% - 20px);
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card h3 {
+    color: var(--primary-color);
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: var(--text-color);
+}
+
+/* ==================== Responsive Styles ==================== */
+
+/* Tablets */
+@media (max-width: 992px) {
+    .content {
+        margin-left: 0;
+        padding: 15px;
+    }
+
+    .card {
+        width: calc(50% - 20px);
+    }
+}
+
+/* Small screens (phones) */
+@media (max-width: 576px) {
+    body {
+        flex-direction: column;
+    }
+
+    .cards {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .card {
+        width: 100%;
+    }
+
+    .content {
+        padding: 15px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+       <%- include('partials/header') %>
+    <div class="container">
+       
+        <main class="content" id="content">
+    <section class="header">
+        <h2>Welcome</h2>
+        <h3>Journey toward better communication starts here</h3>
+        <p>Access your lessons, track your progress, take quizzes, and book appointments.</p>
+         <%- include('partials/navbtn') %>
+    </section>
+
+  
+
+    <section class="cards">
+        <div class="card" id="Phonemes">
+            <h3>Phonemes</h3>
+            <p>Explore interactive lessons to improve your Urdu pronunciation, from basics to advanced.</p>
+        </div>
+        <div class="card" id="Words">
+            <h3>Words</h3>
+            <p>Engage in fun speech therapy games designed to enhance your pronunciation skills.</p>
+        </div>
+        <div class="card" id="Sentences">
+            <h3>Sentences</h3>
+            <p>Take quizzes to test your Urdu pronunciation accuracy and receive detailed feedback.</p>
+        </div>
+       
+    </section>
+</main>
+    </div>
+       <%- include('partials/footer') %>
+</body>
+<!-- <script src="/javascripts/sidebar.js"></script> -->
+<script>
+    // Attach event listener to the card using the ID
+    document.getElementById("Phonemes").addEventListener("click", function () {
+        window.location.href = "phonemes"; // Redirect to the lessons.html page
+    });
+    document.getElementById("Words").addEventListener("click", function () {
+        window.location.href = "words"; // Redirect to the lessons.html page
+    }); document.getElementById("Sentences").addEventListener("click", function () {
+        window.location.href = "sentences"; // Redirect to the sentences.html page
+    });
+</script>
+</html>

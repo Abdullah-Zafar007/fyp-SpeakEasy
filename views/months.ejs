@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>مہینے - Months Practice</title>
+    <link rel="stylesheet" href="/styles/shared.css" />
+    <link rel="stylesheet" href="/styles/navbtn.css">
+  <style>
+  :root {
+  --primary-color: #008080;
+  --secondary-color: #e9f5f5;
+  --text-color: #3b3b3b;
+}
+
+body {
+  font-family: 'Noto Nastaliq Urdu', 'Arial', sans-serif;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 20px;
+  direction: rtl;
+  text-align: center;
+}
+
+h2 {
+  color: var(--primary-color);
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card {
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  padding: 18px;
+  text-align: center;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  font-size: 18px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card:hover {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+#startBtn {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#startBtn:hover {
+  background-color: #006666;
+}
+
+#result {
+  margin-top: 24px;
+  color: var(--text-color);
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* ✅ Responsive adjustments */
+@media (max-width: 768px) {
+  h2 {
+    font-size: 22px;
+  }
+
+  .card {
+    font-size: 16px;
+    padding: 14px;
+  }
+
+  #startBtn {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+
+  #result {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cards {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+
+  .card {
+    font-size: 15px;
+    padding: 12px;
+  }
+
+  #startBtn {
+    width: 100%;
+    font-size: 16px;
+  }
+}
+
+</style>
+</head>
+<body>
+ <%- include('partials/header') %>
+ <%- include('partials/navbtn') %>
+
+  <h2>📅 مہینے (Months)</h2>
+  <div class="cards" id="months">
+    <div class="card" data-audio="audio/months/Male/january.wav" data-word="جنوری">جنوری</div>
+    <div class="card" data-audio="audio/months/Male/february.wav" data-word="فروری">فروری</div>
+    <div class="card" data-audio="audio/months/Male/march.wav" data-word="مارچ">مارچ</div>
+    <div class="card" data-audio="audio/months/Male/april.wav" data-word="اپریل">اپریل</div>
+    <div class="card" data-audio="audio/months/Male/may.wav" data-word="مئ">مئ</div>
+    <div class="card" data-audio="audio/months/Male/june.wav" data-word="جون">جون</div>
+    <div class="card" data-audio="audio/months/Male/july.wav" data-word="جولائ">جولائ</div>
+    <div class="card" data-audio="audio/months/Male/august.wav" data-word="اگست">اگست</div>
+    <div class="card" data-audio="audio/months/Male/september.wav" data-word="سپتمبر">سپتمبر</div>
+    <div class="card" data-audio="audio/months/Male/october.wav" data-word="اکتوبر">اکتوبر</div>
+    <div class="card" data-audio="audio/months/Male/november.wav" data-word="نومبر">نومبر</div>
+    <div class="card" data-audio="audio/months/Male/december.wav" data-word="دسمبر">دسمبر</div>
+  </div>
+
+  <button id="startBtn">شروع کریں (Start Practice)</button>
+  <div id="result"></div>
+
+  <script>
+    const cards = document.querySelectorAll('.card');
+    const resultDiv = document.getElementById('result');
+    const startBtn = document.getElementById('startBtn');
+
+    let selectedCard = null;
+
+    // Remove previous highlights and reset UI
+    function resetUI() {
+      cards.forEach(c => c.classList.remove('correct', 'incorrect'));
+      resultDiv.textContent = '';
+      startBtn.style.display = 'none';
+      selectedCard = null;
+    }
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        resetUI();
+
+        selectedCard = card;
+        startBtn.style.display = 'inline-block';
+        resultDiv.textContent = '🎧 پہلے آڈیو سنیں پھر نیچے دئیے گئے بٹن پر کلک کر کے بولنا شروع کریں۔';
+
+        // Play audio automatically on card select
+        const audio = new Audio(selectedCard.dataset.audio);
+        audio.play();
+      });
+    });
+
+    startBtn.addEventListener('click', () => {
+      if (!selectedCard) return;
+
+      resultDiv.textContent = '🎙️ بولنا شروع کریں...';
+
+      const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      recognition.lang = 'ur-PK';
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+      recognition.start();
+
+      recognition.onresult = (event) => {
+        const spokenText = event.results[0][0].transcript.trim();
+        const correctWord = selectedCard.dataset.word;
+
+        console.log("Spoken:", spokenText);
+
+        if (spokenText === correctWord) {
+          selectedCard.classList.add('correct');
+          resultDiv.innerText = `✅ آپ نے درست کہا: "${spokenText}"`;
+        } else {
+          selectedCard.classList.add('incorrect');
+          const mistakes = getMistakes(correctWord, spokenText);
+          resultDiv.innerText = `❌ آپ نے "${spokenText}" کہا، جبکہ درست لفظ "${correctWord}" ہے۔\nغلطی والے حروف: ${mistakes}\n\nمزید مشق کریں یا معالج سے رابطہ کریں۔`;
+        }
+      };
+
+      recognition.onerror = (e) => {
+        resultDiv.innerText = '⚠️ مائیکروفون کام نہیں کر رہا یا اجازت نہیں ملی۔';
+        console.error('Speech recognition error:', e.error);
+      };
+
+      recognition.onend = () => {
+        // Recognition ended automatically after result or error
+        startBtn.style.display = 'inline-block'; // Let user retry
+      };
+
+      startBtn.style.display = 'none'; // Hide button while listening
+    });
+
+    function getMistakes(correct, spoken) {
+      let mistakes = [];
+      const minLength = Math.min(correct.length, spoken.length);
+      for (let i = 0; i < minLength; i++) {
+        if (correct[i] !== spoken[i]) {
+          mistakes.push(correct[i]);
+        }
+      }
+      if (spoken.length < correct.length) {
+        mistakes.push(...correct.slice(spoken.length));
+      }
+      return mistakes.length ? mistakes.join(', ') : 'غیر متوقع مسئلہ';
+    }
+  </script>
+ <%- include('partials/footer') %>
+
+</body>
+</html>

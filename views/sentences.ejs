@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech Therapy</title>
+        <link rel="stylesheet" href="/styles/navbtn.css">
+
+    <style>
+       :root {
+    --primary-color: #008080;
+    --secondary-color: #e9f5f5;
+    --text-color: #3b3b3b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #FFFFFF;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    color: var(--text-color);
+}
+
+/* Sidebar */
+.sidebar {
+    width: 10%;
+    background: var(--primary-color);
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    transition: width 0.3s ease;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 50px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.menu-item {
+    font-size: 18px;
+    cursor: pointer;
+    padding: 10px 5px;
+    text-align: center;
+    border-radius: 5px;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.menu-item:hover,
+.menu-item.active {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* Content */
+.content {
+    flex: 1;
+    background: var(--secondary-color);
+    padding: 40px 60px;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.header {
+    text-align: left;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+.header h2 {
+    font-size: 36px;
+    margin-top: 10px;
+    color: var(--primary-color);
+}
+
+.header p {
+    font-size: 16px;
+    margin-top: 10px;
+    color: #7a7a7a;
+}
+
+/* Main Card */
+.main-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    display: none;
+}
+
+.main-card.active {
+    display: block;
+}
+
+/* Cards Grid */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* =========================
+   Responsive Design
+========================= */
+
+/* Tablets (up to 992px) */
+@media screen and (max-width: 992px) {
+    .sidebar {
+        width: 15%;
+    }
+
+    .content {
+        padding: 30px 40px;
+    }
+
+    .header h2 {
+        font-size: 28px;
+    }
+
+    .card {
+        font-size: 1rem;
+    }
+
+    .main-card {
+        font-size: 1.2rem;
+    }
+}
+
+/* Mobile (up to 768px) */
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 10px;
+    }
+
+    .logo {
+        display: none;
+    }
+
+    .menu {
+        flex-direction: row;
+        gap: 10px;
+    }
+
+    .content {
+        padding: 20px;
+    }
+
+    .header h2 {
+        font-size: 24px;
+    }
+
+    .header p {
+        font-size: 14px;
+    }
+
+    .card {
+        font-size: 1rem;
+    }
+
+    .main-card {
+        font-size: 1.1rem;
+    }
+}
+
+/* Very small devices (up to 480px) */
+@media screen and (max-width: 480px) {
+    .card {
+        font-size: 0.9rem;
+        padding: 15px;
+    }
+
+    .main-card {
+        font-size: 1rem;
+        padding: 15px;
+    }
+
+    .header h2 {
+        font-size: 20px;
+    }
+
+    .header p {
+        font-size: 13px;
+    }
+}
+.logo {
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 40px;
+    text-align: center;
+    color: white;
+    position: relative;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+           <div class="logo">
+  <img src="/images/logo.png" alt="UST Logo" style="height: 80px;" />
+</div>
+            <div class="menu">
+                <div class="menu-item active" data-section="Easy">Easy </div>
+                <div class="menu-item" data-section="High">High </div>
+                <div class="menu-item" data-section="Moderate">Moderate </div>
+               
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <header class="header">
+                <h2 id="section-title">Easy</h2>
+                <p>Click on a category from the sidebar to practice speech exercises.</p>
+            </header>
+           
+            <!-- Sections -->
+            <div id="High" class="main-card active">
+                <section class="cards">
+                    <div class="card" data-audio="\audio\Jumly\high\achy khyalat insan ky kirdar ko bulandi ata krty hyn .wav">            اچھے خیالات انسان کے کردار کو بلندی عطا کرتے ہیں۔
+                    </div>
+                    <div class="card" data-audio="\audio\Jumly\high\aman aur skoon ky bgair khushhal Zindagi ka taswur namumkin h .wav">            امن اور سکون کے بغیر خوشحال زندگی کا تصور ناممکن ہے۔
+                    </div>
+                    <div class="card" data-audio="\audio\Jumly\high\khuwabon ki taabeer whi log paaty hyn Jo jagty huai mehnt krty hyn. .wav">            خوابوں کی تعبیر وہی لوگ پاتے ہیں جو جاگتے ہوئے محنت کرتے ہیں۔
+                    </div>
+                    <div class="card" data-audio="\audio\Jumly\high\kirdar ki pakeezgi insan ko bulandiyon tk pohncha skti h. .wav">            کردار کی پاکیزگی انسان کو بلندیوں تک پہنچا سکتی ہے۔
+                    </div>
+                    <div class="card" data-audio="\audio\Jumly\high\muhabbt wo dolat h Jo tkseem krny sy bhrti h.wav">            محبت وہ دولت ہے جو تقسیم کرنے سے بڑھتی ہے۔
+                    </div>
+                    <div class="card" data-audio="\audio\Jumly\high\sbr aur istqamt hr toofan ka mukabla krny ka hunr dyti hyn .wav">            صبر اور استقامت ہر طوفان کا مقابلہ کرنے کا ہنر دیتی ہیں۔
+                    </div>
+                    <div class="card" data-audio="\audio\Jumly\high\schai ki takt insan ko hr mushkil sy Nikal skti h. .wav">            سچائی کی طاقت انسان کو ہر مشکل سے نکال سکتی ہے۔
+                    </div>
+                    <div class="card" data-audio="\audio\Jumly\high\wqt ka zya Zindagi ky qeemti lmhat ko bemksd krdyta h .wav">           ۔ وقت کا ضیاع زندگی کے قیمتی لمحات کو بے مقصد کر دیتا ہے
+                    </div>
+                    <div class="card" data-audio="\audio\Jumly\high\zhant srf ilm main nhi, blky aml myn bhi jhltki h.wav">            ذہانت صرف علم میں نہیں، بلکہ عمل میں بھی جھلکتی ہے۔
+                    </div>
+                    <div class="card" data-audio="\audio\Jumly\high\Zindagi ky sfr myn hr nakami aik nai kamyabi ka pysh-e- khyma bn skti h. .wav">            زندگی کے سفر میں ہر ناکامی ایک نئی کامیابی کا پیش خیمہ بن سکتی ہے۔
+                    </div>
+                </section>
+            </div>
+            
+            <div id="Easy" class="main-card">
+                <section class="cards">
+                    <div class="card" data-audio="\audio\Jumly\easy\ap kysy hyn.wav">            آپ کیسے ہیں؟
+                    </div>
+                    <div class="card" data-audio="\audio\Jumly\easy\hum dost hain.wav">            ہم دوست ہیں۔
+                    </div>
+                    <div class="card" data-audio="\audio\Jumly\easy\khana tyar hai.wav">            کھانا تیار ہے۔
+                    </div>
+                    <div class="card" data-audio="\audio\Jumly\easy\kya ap myri mdd kryngy.wav">            کیا آپ میری مدد کریں گے؟
+                    </div>
+                    <div class="card" data-audio="\audio\Jumly\easy\main school jarha hun.wav">            میں اسکول جا رہا ہوں۔
+                    </div>
+                    <div class="card" data-audio="\audio\Jumly\easy\main TV dykhrha hun.wav">            میں ٹی وی دیکھ رہا ہوں۔
+                    </div>
+                    <div class="card" data-audio="\audio\Jumly\easy\mausm aj bht acha h .wav">            موسم آج بہت اچھا ہے۔
+                    </div>
+                    <div class="card" data-audio="\audio\Jumly\easy\mujy pani chahiyaiii .wav">            مجھے پانی چاہیے۔
+                    </div>
+                    <div class="card" data-audio="\audio\Jumly\easy\mujy Urdu ati h.wav">            مجھے اردو آتی ہے۔
+                    </div>
+                    <div class="card" data-audio="\audio\Jumly\easy\yh kitab bht achi h .wav">            یہ کتاب بہت اچھی ہے۔
+                    </div>
+                </section>
+            </div>
+            
+            <div id="Moderate" class="main-card">
+                <section class="cards">
+                    <div class="card" data-audio="\audio\Jumly\moderate\agr mausm bhtr hua to hum bhr jayengy.wav">            اگر موسم بہتر ہوا تو ہم باہر جائیں گے۔
+                    </div>
+                    <div class="card" data-audio="\audio\Jumly\moderate\agr mehnt kro gy to kamyabi tumhara muqadr bnygi.wav">            اگر محنت کرو گے تو کامیابی تمہارا مقدر بنے گی۔
+                    </div>
+                    <div class="card" data-audio="\audio\Jumly\moderate\apky alfaz ny myra hosla bhrha diya .wav">            آپ کے الفاظ نے میرا حوصلہ بڑھایا ہے۔
+                    </div>
+                    <div class="card" data-audio="\audio\Jumly\moderate\apny khuwabon ko pura krny kyliyai aml zruri h. .wav">            اپنے خوابوں کو پورا کرنے کے لیے عمل ضروری ہے۔
+                    </div>
+                    <div class="card" data-audio="\audio\Jumly\moderate\bchon ko achi aadtyn sikhani chahiyaiii .wav">            بچوں کو اچھی عادتیں سیکھانی چاہئیں۔
+                    </div>
+                    <div class="card" data-audio="\audio\Jumly\moderate\hum sbko dusron ki mdd kyliyai tyar rehna chahiyaiii .wav">            ہم سب کو دوسروں کی مدد کے لیے تیار رہنا چاہیے
+                    </div>
+                    <div class="card" data-audio="\audio\Jumly\moderate\kitabon sy muhabbt ilm myn izara krti h.wav">            کتابوں سے محبت علم میں اضافہ کرتی ہے۔
+                    </div>
+                    <div class="card" data-audio="\audio\Jumly\moderate\rat ki khamoshi myn mutalya krna bht aramda hota h .wav">            رات کی خاموشی میں مطالعہ کرنا بہت آرام دہ ہوتا ہے۔
+                    </div>
+                    <div class="card" data-audio="\audio\Jumly\moderate\yh fysla wqt pr Kiya Jana chahiayii tha.wav">            یہ فیصلہ وقت پر کیا جانا چاہیے تھا۔
+                    </div>
+                    <div class="card" data-audio="\audio\Jumly\moderate\Zindagi main hr challenge aik nai rah dikhata h.wav">            زندگی میں ہر چیلنج ایک نئی راہ دکھاتا ہے۔
+                    </div>
+                   
+
+                </section>
+                
+            </div>
+
+           
+                </section>
+                 <%- include('partials/navbtn') %>
+            </div>
+            
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle sidebar menu item click
+            const menuItems = document.querySelectorAll('.menu-item');
+            menuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Remove active class from all menu items
+                    menuItems.forEach(i => i.classList.remove('active'));
+                    // Add active class to clicked menu item
+                    item.classList.add('active');
+    
+                    // Hide all sections
+                    const sections = document.querySelectorAll('.main-card');
+                    sections.forEach(section => section.classList.remove('active'));
+    
+                    // Show the corresponding section
+                    const sectionId = item.getAttribute('data-section');
+                    const activeSection = document.getElementById(sectionId);
+                    activeSection.classList.add('active');
+    
+                    // Update section title
+                    const sectionTitle = document.getElementById('section-title');
+                    sectionTitle.textContent = item.textContent;
+                });
+            });
+    
+            // Handle card click to play audio
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const audioSrc = card.getAttribute('data-audio');
+                    const audio = new Audio(audioSrc);
+                    audio.play();
+                });
+            });
+        });
+    </script>
+    
+</body>
+</html>

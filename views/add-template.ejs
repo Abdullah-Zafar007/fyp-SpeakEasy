@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>نیا سبق شامل کریں - Speak Easy</title>
+  <link rel="stylesheet" href="/styles/shared.css">
+  <style>
+    :root {
+      --primary: #009999;       /* lighter than #008080 */
+      --accent: #007777;        /* lighter than #006666 */
+      --background: #f2fbfb;    
+      --text-dark: #3b3b3b;
+      --text-light: #666;
+    }
+
+    body {
+      font-family: 'Noto Nastaliq Urdu', serif;
+      background-color: var(--background);
+      color: var(--text-dark);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    
+
+    .form-container {
+      background-color: #ffffff;
+      padding: 35px 40px;
+      border-radius: 18px;
+      box-shadow: 0 4px 20px rgba(0, 163, 163, 0.15);
+      width: 90%;
+      max-width: 550px;
+      margin: 40px auto;
+      box-sizing: border-box;
+    }
+
+    h3 {
+      color: var(--accent);
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 6px;
+      font-weight: bold;
+      color: var(--accent);
+    }
+
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--accent);
+      border-radius: 10px;
+      font-size: 16px;
+      background-color: #f9fefe;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      resize: vertical;
+      height: 100px;
+    }
+
+    button {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 14px 22px;
+      margin-top: 25px;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: var(--accent);
+    }
+
+    
+      .form-container {
+        padding: 25px 20px;
+      }
+    
+  </style>
+</head>
+<body>
+ <%- include('partials/header') %>
+ 
+
+  <!-- Form Section -->
+  <div class="form-container">
+    <h3>📘 نیا تجویز کردہ سبق شامل کریں</h3>
+    <form action="/add-template" method="POST">
+      <label>زمرہ:</label>
+      <input type="text" name="category" required>
+
+      <label>عنوان:</label>
+      <input type="text" name="title" required>
+
+      <label>تفصیل:</label>
+      <textarea name="description" required></textarea>
+
+      <button type="submit">محفوظ کریں</button>
+    </form>
+  </div>
+
+  
+  <%- include('partials/footer') %>
+
+</body>
+</html>

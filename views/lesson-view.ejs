@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lesson: <%= lesson.title %></title>
+    <link rel="stylesheet" href="/styles/shared.css" />
+    <link rel="stylesheet" href="/styles/navbtn.css">
+</head>
+<body>
+           <%- include('partials/header') %>
+
+  <h1><%= lesson.title %></h1>
+  <p><strong>Description:</strong> <%= lesson.description %></p>
+  <p><strong>Content:</strong> <%= lesson.content %></p>
+
+  <% if (!lesson.completed) { %>
+    <form action="/lesson/<%= lesson._id %>/respond" method="POST">
+      <label>Your Response / Feedback:</label><br>
+      <textarea name="response" rows="6" required></textarea><br><br>
+      <button type="submit">Submit Response</button>
+    </form>
+  <% } else { %>
+    <p><strong>Your response:</strong> <%= lesson.patientResponse %></p>
+    <p><em>Lesson completed.</em></p>
+  <% } %>
+
+  <p><a href="/report/<%= lesson.patientId %>">Back to Report</a></p>
+</body>
+</html>

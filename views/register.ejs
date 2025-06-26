@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Registration - Urdu Speech Therapy</title>
+  <link rel="stylesheet" href="/styles/LR.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="card-content">
+        <h1>CREATE AN ACCOUNT</h1>
+        <p>Register to get started with Urdu Speech Therapy!</p>
+        <form id="register-form">
+          <input id="name" name="name" type="text" placeholder="Full Name" class="input-field" required />
+          <input id="username" name="username" type="text" placeholder="Username" class="input-field" required />
+          <input id="email" name="email" type="email" placeholder="Email" class="input-field" required />
+          <input id="phone" name="phone" type="tel" placeholder="Phone" class="input-field" required />
+          <input id="password" name="password" type="password" placeholder="Password" class="input-field" required />
+          
+          <select id="role" name="role" class="input-field dropdown" required>
+            <option value="" disabled selected>Register as</option>
+            <option value="patient">Patient</option>
+       
+          </select>
+          
+          <button type="submit" class="login-button">Register</button>
+        </form>
+        <p>Already have an account? <a class="r-login" href="/login">Click Here to Login</a></p>
+      </div>
+    </div>
+
+    <div class="illustration">
+      <img src="/images/Screenshot (528).png" alt="Speech Therapy Illustration">
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("register-form").addEventListener("submit", function (event) {
+      event.preventDefault();
+      
+      const name = document.getElementById("name").value.trim();
+      const username = document.getElementById("username").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const password = document.getElementById("password").value;
+      const role = document.getElementById("role").value;
+
+      if (!role) {
+        alert("Please select a role.");
+        return;
+      }
+
+      if (password.length < 8) {
+        alert("Password must be at least 8 characters long.");
+        return;
+      }
+
+      fetch("http://localhost:4200/api/users/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, username,email, phone, password, role }),
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            alert("Registration successful! Please login.");
+            window.location.href = "/login";
+          } else {
+            alert(data.message || "Registration failed.");
+          }
+        })
+        .catch(error => {
+          console.error("Error during registration:", error);
+          alert("An unexpected error occurred. Please try again.");
+        });
+    });
+  </script>
+</body>
+</html>

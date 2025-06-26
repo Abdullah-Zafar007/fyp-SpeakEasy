@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%= patient.name %>'s Report - Speak Easy</title>
+    <style>
+        :root {
+            --primary-color: #008080;
+            --secondary-color: #e9f5f5;
+            --text-color: #3b3b3b;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8fdfd;
+            color: var(--text-color);
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 4px solid #006666;
+        }
+
+        header .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        header .contact-info {
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .patient-info p {
+            margin: 8px 0;
+            font-size: 1.05em;
+        }
+
+        .report-section .attempt {
+            margin-bottom: 25px;
+            padding: 15px 20px;
+            border-left: 4px solid var(--primary-color);
+            background-color: var(--secondary-color);
+            border-radius: 6px;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 10px 0;
+        }
+
+        li {
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .correct {
+            color: green;
+            font-weight: bold;
+        }
+
+        .incorrect {
+            color: red;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 50px;
+        }
+
+        @media screen and (max-width: 600px) {
+            .container {
+                margin: 20px;
+                padding: 20px;
+            }
+
+            header {
+                padding: 20px 10px;
+            }
+
+            .report-section .attempt {
+                padding: 10px;
+            }
+        }
+        /* General section padding */
+.section {
+  padding: 20px;
+  background-color: var(--secondary-color);
+  border-radius: 8px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* Heading */
+.section h2 {
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+/* Form field labels */
+.section label {
+  font-weight: bold;
+  color: var(--text-color);
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Input and textarea */
+.section input[type="text"],
+.section input[type="date"],
+.section select,
+.section textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: inherit;
+  margin-bottom: 15px;
+  transition: border-color 0.2s ease;
+}
+
+.section input:focus,
+.section textarea:focus,
+.section select:focus {
+  border-color: var(--primary-color);
+  outline: none;
+}
+
+/* File input */
+.section input[type="file"] {
+  margin-top: 5px;
+}
+
+/* Submit button */
+.section button[type="submit"] {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 10px 18px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.section button[type="submit"]:hover {
+  background-color: #006666;
+}
+
+/* Suggested Lessons section */
+#lessonList {
+  margin-top: 10px;
+  padding-left: 15px;
+}
+
+#lessonList li {
+  margin-bottom: 10px;
+}
+
+#lessonList li a {
+  text-decoration: none;
+  color: var(--primary-color);
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+#lessonList li a:hover {
+  color: #004c4c;
+  text-decoration: underline;
+}
+
+/* Responsive tweak */
+@media screen and (max-width: 600px) {
+  .section {
+    padding: 15px;
+  }
+
+  .section h2 {
+    font-size: 1.3rem;
+  }
+
+  .section button[type="submit"] {
+    width: 100%;
+  }
+}
+.styled-lesson-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 15px;
+  padding-left: 0;
+}
+
+.styled-lesson-list li {
+  list-style: none;
+  background-color: var(--secondary-color);
+  border-left: 4px solid var(--primary-color);
+  padding: 12px 16px;
+  border-radius: 8px;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  font-size: 1rem;
+}
+
+.styled-lesson-list li:hover {
+  background-color: #d7efef;
+  transform: translateX(4px);
+}
+
+.styled-lesson-list li a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 500;
+  display: block;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Speak Easy Therapy Center</div>
+        <div class="contact-info">
+            Sialkot,Pakistan<br>
+            Phone: +92-300-1234567 | Email: support@speakeasy.pk
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Download PDF Button -->
+        <div style="text-align: right; margin-bottom: 20px;">
+            <button onclick="window.print()" style="padding: 10px 20px; background-color: var(--primary-color); color: white; border: none; border-radius: 6px; cursor: pointer;">📄 Print</button>
+        </div>
+
+        <div class="section">
+            <h2>Patient Information</h2>
+            <div class="patient-info">
+                <p><strong>Name:</strong> <%= patient.name %></p>
+                <p><strong>Parent:</strong> <%= patient.pname %></p>
+                <p><strong>Phone:</strong> <%= patient.phone %></p>
+                <p><strong>Age:</strong> <%= patient.age %> years</p>
+            </div>
+        </div>
+
+     <div class="section report-section">
+            <h2>Quiz Attempts</h2>
+
+            <% if (reports.length === 0) { %>
+                <p>No quiz attempts found.</p>
+            <% } else { %>
+                <% reports.forEach((report, index) => {
+                    let correctCount = 0;
+                    report.results.forEach(r => {
+                        if (r.isCorrect) correctCount++;
+                    });
+                    let total = report.results.length;
+                %>
+                    <div class="attempt">
+                        <h3>Attempt <%= index + 1 %> - <small>Submitted: <%= new Date(report.timestamp).toLocaleString() %></small></h3>
+                        <p><strong>Score:</strong> <%= correctCount %> / <%= total %> correct</p>
+                        <ul>
+                            <% report.results.forEach(r => { %>
+                                <li>
+                                    <strong>Question:</strong> <%= r.question %><br>
+                                    <strong>Your Answer:</strong> <%= r.userPronunciation %><br>
+                                    <strong>Correct:</strong> <%= r.correctPronunciation %><br>
+                                    <strong>Result:</strong> 
+                                    <span class="<%= r.isCorrect ? 'correct' : 'incorrect' %>">
+                                        <%= r.isCorrect ? '✅ Correct' : '❌ Incorrect' %>
+                                    </span>
+                                </li>
+                            <% }) %>
+                        </ul>
+                    </div>
+                <% }) %>
+            <% } %>
+        </div>
+    </div>
+<div class="section">
+    <h2>سبق تفویض کریں</h2>
+
+    <form action="/assign-lesson" method="POST" enctype="multipart/form-data" style="margin-top: 20px;">
+        <input type="hidden" name="patientId" value="<%= patient._id %>">
+
+        <label for="lessonType">سبق کی قسم:</label><br>
+        <select name="lessonType" id="lessonType" required style="padding: 5px; margin-bottom: 10px;">
+            <option value="تلفظ">تلفظ (Pronunciation)</option>
+            <option value="الفاظ">الفاظ (Vocabulary)</option>
+            <option value="روانی">روانی (Fluency)</option>
+        </select><br>
+
+        <label for="title">سبق کا عنوان:</label><br>
+        <input type="text" name="title" id="title" required style="width: 100%; padding: 5px; margin-bottom: 10px;"><br>
+
+        <label for="content">سبق کی تفصیل:</label><br>
+        <textarea name="content" id="content" rows="4" required style="width: 100%; padding: 5px;"></textarea><br>
+
+        <label for="dueDate">آخری تاریخ:</label><br>
+        <input type="date" name="dueDate" id="dueDate" style="padding: 5px; margin-bottom: 15px;"><br>
+
+        <label for="files">فائلیں منسلک کریں (اختیاری):</label><br>
+        <input type="file" name="files" id="files" multiple accept=".pdf,.mp3,.mp4,.jpg,.png" style="margin-bottom: 15px;"><br>
+
+        <button type="submit" style="margin-top: 10px; background-color: #008080; color: white; padding: 8px 15px; border: none; border-radius: 6px; cursor: pointer;">➕ سبق تفویض کریں</button>
+    </form>
+
+  <!-- Suggested Lessons -->
+<div style="margin-top: 40px;">
+    <h3>📚 تجویز کردہ اسباق</h3>
+    <p>سبق منتخب کریں تاکہ فارم خود بخود بھر جائے:</p>
+
+    <ul id="lessonList" class="styled-lesson-list" style="list-style-type: disc; margin-left: 20px;">
+        <!-- Hardcoded Lessons -->
+        <li><a href="#" onclick="fillLesson('تلفظ', 'س کی آواز کی مشق', 'سورج، سابون، سانپ جیسے الفاظ کی مشق کریں۔')">س کی آواز کی مشق</a></li>
+        <li><a href="#" onclick="fillLesson('تلفظ', 'ر کی آواز کی مشق', 'ریڈ، رن، اور رین جیسے الفاظ کو دہرائیں۔')">ر کی آواز کی مشق</a></li>
+        <li><a href="#" onclick="fillLesson('الفاظ', 'جانوروں کے نام', 'بلی، کتا، ہاتھی جیسے جانوروں کے نام سیکھیں۔')">جانوروں کے نام</a></li>
+        <li><a href="#" onclick="fillLesson('روانی', 'جملے دہرانا', 'سادہ جملوں کو بار بار دہرانا سیکھیں جیسے: میں سکول جا رہا ہوں۔')">جملے دہرانا</a></li>
+        <li><a href="#" onclick="fillLesson('الفاظ', 'رنگوں کے نام', 'نیلا، سبز، سرخ، پیلا جیسے رنگوں کے نام یاد کریں۔')">رنگوں کے نام</a></li>
+        <li><a href="#" onclick="fillLesson('روانی', 'کہانی سنانا', 'ایک چھوٹی کہانی سنائیں جیسے: ایک دفعہ کا ذکر ہے...')">کہانی سنانا</a></li>
+        <li><a href="#" onclick="fillLesson('تلفظ', 'ش کی آواز کی مشق', 'شیشہ، شعلہ، شیر جیسے الفاظ کی مشق کریں۔')">ش کی آواز کی مشق</a></li>
+        <li><a href="#" onclick="fillLesson('روانی', 'سوالات کے جواب دینا', 'سوال سنیں اور واضح جواب دیں جیسے: آپ کا نام کیا ہے؟')">سوالات کے جواب</a></li>
+
+        <!-- Dynamically Added Lessons -->
+        <% suggestedLessons.forEach(lesson => { %>
+            <li>
+                <a href="#" onclick="fillLesson('<%= lesson.category %>', '<%= lesson.title %>', '<%= lesson.description %>')">
+                    <%= lesson.title %>
+                </a>
+            </li>
+        <% }) %>
+    </ul>
+</div>
+
+
+<div class="section">
+ <h2>Patient's Uploaded Responses</h2>
+
+<% if (lessons && lessons.length > 0) { %>
+  <% let hasResponses = false; %>
+  <% lessons.forEach(lesson => { %>
+    <% if (lesson.responseFile) { hasResponses = true; %>
+      <div class="response-item" style="margin-bottom: 25px; padding: 15px; border-left: 4px solid var(--primary-color); background-color: var(--secondary-color); border-radius: 6px;">
+        <h3><%= lesson.title %> - جواب</h3>
+        <% if (lesson.responseFile.endsWith('.mp4') || lesson.responseFile.endsWith('.webm')) { %>
+          <video controls width="320" style="max-width: 100%;" src="/uploads/<%= lesson.responseFile %>"></video>
+        <% } else if (lesson.responseFile.endsWith('.mp3') || lesson.responseFile.endsWith('.wav')) { %>
+          <audio controls src="/uploads/<%= lesson.responseFile %>"></audio>
+        <% } else { %>
+          <a href="/uploads/<%= lesson.responseFile %>" target="_blank"><%= lesson.responseFile %></a>
+        <% } %>
+
+        <!-- Therapist feedback display -->
+        <% if (lesson.therapistFeedback) { %>
+          <div style="margin-top: 10px; padding: 10px; background-color: #e0f7f7; border-left: 3px solid var(--primary-color);">
+            <strong>Therapist Feedback:</strong>
+            <p><%= lesson.therapistFeedback %></p>
+          </div>
+        <% } else { %>
+          <p style="margin-top: 10px; font-style: italic; color: gray;">No feedback yet from the therapist.</p>
+        <% } %>
+
+        <!-- Therapist feedback submission form -->
+        <form action="/lesson/<%= lesson._id %>/feedback" method="POST" style="margin-top: 10px;">
+          <textarea name="feedback" rows="3" placeholder="Write feedback here..." required style="width: 100%; padding: 8px;"></textarea>
+          <button type="submit" style="margin-top: 5px; background-color: var(--primary-color); color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer;">
+            Submit Feedback
+          </button>
+        </form>
+      </div>
+    <% } %>
+  <% }) %>
+
+  <% if (!hasResponses) { %>
+    <p>No responses have been uploaded yet by the patient.</p>
+  <% } %>
+<% } else { %>
+  <p>No lessons assigned, so no responses to show.</p>
+<% } %>
+
+
+   
+<script>
+    function fillLesson(type, title, content) {
+        document.getElementById('lessonType').value = type;
+        document.getElementById('title').value = title;
+        document.getElementById('content').value = content;
+    }
+</script>
+
+
+
+    <footer>
+        Generated by Speak Easy - Helping Children Find Their Voice 🌟
+    </footer>
+
+    <style>
+        @media print {
+            button {
+                display: none;
+            }
+
+            body {
+                background-color: white !important;
+            }
+
+            .container {
+                box-shadow: none !important;
+            }
+
+            footer {
+                page-break-after: always;
+            }
+        }
+    </style>
+</body>
+
+</html>

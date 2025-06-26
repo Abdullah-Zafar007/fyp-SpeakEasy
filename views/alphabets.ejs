@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+  <meta charset="UTF-8">
+  <title>Urdu Haroof Practice</title>
+  <style>
+    :root {
+  --primary-color: #008080;
+  --secondary-color: #e9f5f5;
+  --text-color: #3b3b3b;
+}
+
+body {
+  font-family: 'Noto Nastaliq Urdu', 'Arial', sans-serif;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  text-align: center;
+  direction: rtl;
+  margin: 0;
+  padding: 0;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin: 30px auto;
+  max-width: 1200px;
+}
+
+.card {
+  background-color: #fff;
+  border: 2px solid var(--primary-color);
+  padding: 20px;
+  font-size: 30px;
+  cursor: pointer;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  color: var(--text-color);
+  min-width: 120px;
+  max-width: 200px;
+}
+
+.card:hover {
+  transform: scale(1.1);
+  background-color: #ffffffcc; /* Light transparent white */
+}
+
+#feedback {
+  margin-top: 20px;
+  font-size: 22px;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+#practiceBtn {
+  margin-top: 20px;
+  padding: 10px 24px;
+  font-size: 18px;
+  cursor: pointer;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+#practiceBtn:hover {
+  background-color: #006666; /* Slightly darker teal */
+}
+
+  </style>
+</head>
+<body>
+
+  <h1>اردو حروف کی مشق</h1>
+
+  <section class="cards">
+    <div class="card" data-letter="ا" data-audio="audio/haroof/Alif.wav">ا</div>
+    <div class="card" data-letter="ب" data-audio="audio/haroof/bay.wav">ب</div>
+    <div class="card" data-letter="پ" data-audio="audio/haroof/pey.wav">پ</div>
+    <div class="card" data-letter="ت" data-audio="audio/haroof/tey.wav">ت</div>
+    <div class="card" data-letter="ٹ" data-audio="audio/haroof/tay.wav">ٹ</div>
+    <div class="card" data-letter="ث" data-audio="audio/haroof/say.wav">ث</div>
+    <div class="card" data-letter="ج" data-audio="audio/haroof/jeem.wav">ج</div>
+    <div class="card" data-letter="چ" data-audio="audio/haroof/chay.wav">چ</div>
+    <div class="card" data-letter="ح" data-audio="audio/haroof/hay.wav">ح</div>
+    <div class="card" data-letter="خ" data-audio="audio/haroof/khay.wav">خ</div>
+    <div class="card" data-letter="د" data-audio="audio/haroof/daal.wav">د</div>
+    <div class="card" data-letter="ڈ" data-audio="audio/haroof/d'aal.wav">ڈ</div>
+    <div class="card" data-letter="ذ" data-audio="audio/haroof/zaal.wav">ذ</div>
+    <div class="card" data-letter="ر" data-audio="audio/haroof/rey.wav">ر</div>
+    <div class="card" data-letter="ڑ" data-audio="audio/haroof/a ray.wav">ڑ</div>
+    <div class="card" data-letter="ز" data-audio="audio/haroof/zey.wav">ز</div>
+    <div class="card" data-letter="ژ" data-audio="audio/haroof/say.wav">ژ</div>
+    <div class="card" data-letter="س" data-audio="audio/haroof/seen.wav">س</div>
+    <div class="card" data-letter="ش" data-audio="audio/haroof/sheen.wav">ش</div>
+    <div class="card" data-letter="ص" data-audio="audio/haroof/suad.wav">ص</div>
+    <div class="card" data-letter="ض" data-audio="audio/haroof/zuad.wav">ض</div>
+    <div class="card" data-letter="ط" data-audio="audio/haroof/to ay.wav">ط</div>
+    <div class="card" data-letter="ظ" data-audio="audio/haroof/zo ay.wav">ظ</div>
+    <div class="card" data-letter="ع" data-audio="audio/haroof/ayn.wav">ع</div>
+    <div class="card" data-letter="غ" data-audio="audio/haroof/ghyn.wav">غ</div>
+    <div class="card" data-letter="ف" data-audio="audio/haroof/fay.wav">ف</div>
+    <div class="card" data-letter="ق" data-audio="audio/haroof/kaaf.wav">ق</div>
+    <div class="card" data-letter="ک" data-audio="audio/haroof/kaaf.wav">ک</div>
+    <div class="card" data-letter="گ" data-audio="audio/haroof/gaaf.wav">گ</div>
+    <div class="card" data-letter="ل" data-audio="audio/haroof/laam.wav">ل</div>
+    <div class="card" data-letter="م" data-audio="audio/haroof/meem.wav">م</div>
+    <div class="card" data-letter="ن" data-audio="audio/haroof/noon.wav">ن</div>
+    <div class="card" data-letter="و" data-audio="audio/haroof/wao.wav">و</div>
+    <div class="card" data-letter="ہ" data-audio="audio/haroof/hey.wav">ہ</div>
+    <div class="card" data-letter="ء" data-audio="audio/haroof/hamza.wav">ء</div>
+    <div class="card" data-letter="ی" data-audio="audio/haroof/bri ye.wav">ی</div>
+    <div class="card" data-letter="ے" data-audio="audio/haroof/bri ye.wav">ے</div>
+  </section>
+
+  <button id="practiceBtn">🔊 مشق کریں</button>
+  <div id="feedback"></div>
+
+  <audio id="audioPlayer"></audio>
+
+  <script>
+    const cards = document.querySelectorAll('.card');
+    let selectedLetter = '';
+    let expectedSpokenName = '';
+    const feedbackDiv = document.getElementById('feedback');
+    const audioPlayer = document.getElementById('audioPlayer');
+
+    const letterToName = {
+      "ا": "الف", "ب": "بے", "پ": "پے", "ت": "تے", "ٹ": "ٹے", "ث": "ثے",
+      "ج": "جیم", "چ": "چے", "ح": "حے", "خ": "خے", "د": "دال", "ڈ": "ڈال",
+      "ذ": "ذال", "ر": "رے", "ڑ": "ڑے", "ز": "زے", "ژ": "ژے", "س": "سین",
+      "ش": "شین", "ص": "صاد", "ض": "ضاد", "ط": "طے", "ظ": "ظے", "ع": "عین",
+      "غ": "غین", "ف": "فے", "ق": "قاف", "ک": "کاف", "گ": "گاف", "ل": "لام",
+      "م": "میم", "ن": "نون", "و": "واؤ", "ہ": "ہے", "ء": "ہمزہ", "ی": "یے", "ے": "بڑی یے"
+    };
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        selectedLetter = card.dataset.letter;
+        expectedSpokenName = letterToName[selectedLetter] || selectedLetter;
+        const audioSrc = card.dataset.audio;
+        audioPlayer.src = audioSrc;
+        audioPlayer.play();
+        feedbackDiv.innerText = `منتخب حرف: "${selectedLetter}" (${expectedSpokenName})`;
+      });
+    });
+
+    document.getElementById('practiceBtn').addEventListener('click', () => {
+      if (!selectedLetter) {
+        feedbackDiv.innerText = 'براہ کرم پہلے کوئی حرف منتخب کریں۔';
+        return;
+      }
+
+      if (!('webkitSpeechRecognition' in window)) {
+        alert('آپ کا براؤزر سپیچ ریکگنیشن کو سپورٹ نہیں کرتا۔');
+        return;
+      }
+
+      const recognition = new webkitSpeechRecognition();
+      recognition.lang = 'ur-PK';
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      feedbackDiv.innerText = '🎤 سن رہا ہے... براہ کرم حرف بولیں';
+
+      recognition.start();
+
+      recognition.onresult = (event) => {
+        const spoken = event.results[0][0].transcript.trim();
+        if (spoken === expectedSpokenName) {
+          feedbackDiv.innerHTML = `✅ آپ نے درست بولا: "${spoken}"`;
+        } else {
+          feedbackDiv.innerHTML = `❌ آپ نے "${spoken}" بولا۔ درست ادائیگی: "${expectedSpokenName}"`;
+        }
+      };
+
+      recognition.onerror = (event) => {
+        feedbackDiv.innerText = `⚠️ خامی: ${event.error}`;
+      };
+    });
+  </script>
+</body>
+</html>

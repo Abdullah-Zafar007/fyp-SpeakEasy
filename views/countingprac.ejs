@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Counting Practice Fixed</title>
+  <link rel="stylesheet" href="/styles/shared.css" />
+    <link rel="stylesheet" href="/styles/navbtn.css">
+<style>
+ :root {
+  --primary-color: #008080;
+  --secondary-color: #e9f5f5;
+  --text-color: #3b3b3b;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--secondary-color);
+  padding: 20px;
+  text-align: center;
+  direction: rtl; /* Optional for Urdu layout */
+  color: var(--text-color);
+  margin: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.cards {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin: 20px auto;
+}
+
+.card {
+  background-color: #ffffff;
+  border: 2px solid var(--primary-color);
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  padding: 20px 30px;
+  font-size: 1.8rem;
+  cursor: pointer;
+  user-select: none;
+  color: var(--text-color);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  flex: 1 1 100px;
+  min-width: 90px;
+  max-width: 180px;
+}
+
+.card:hover {
+  background-color: #d7f0f0;
+  transform: scale(1.05);
+}
+
+#feedback {
+  font-size: 1.5rem;
+  margin-top: 20px;
+  min-height: 40px;
+  color: var(--primary-color);
+}
+
+#startBtn {
+  padding: 10px 25px;
+  font-size: 1.3rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#startBtn:hover {
+  background-color: #006666;
+}
+
+/* ✅ Responsive Styling */
+@media (max-width: 768px) {
+  .card {
+    font-size: 1.5rem;
+    padding: 16px 20px;
+    max-width: 150px;
+  }
+
+  #startBtn {
+    font-size: 1.1rem;
+    padding: 10px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cards {
+    gap: 10px;
+  }
+
+  .card {
+    font-size: 1.2rem;
+    padding: 14px;
+    max-width: 100%;
+  }
+
+  #startBtn {
+    font-size: 1rem;
+    width: 100%;
+  }
+}
+
+</style>
+</head>
+<body>
+ <%- include('partials/header') %>
+
+<h1>Counting Practice</h1>
+<p>Click on any number, listen to its pronunciation, then try speaking it aloud.</p>
+
+<div class="cards" id="cards">
+  <div class="card" data-audio="audio/Counting/Male/sifr.wav" data-word="صفر" data-alt="0">صفر (0)</div>
+  <div class="card" data-audio="audio/Counting/Male/aik.wav" data-word="ایک" data-alt="1">ایک (1)</div>
+  <div class="card" data-audio="audio/Counting/Male/do.wav" data-word="دو" data-alt="2">دو (2)</div>
+  <div class="card" data-audio="audio/Counting/Male/teen.wav" data-word="تین" data-alt="3">تین (3)</div>
+  <div class="card" data-audio="audio/Counting/Male/chaar.wav" data-word="چار" data-alt="4">چار (4)</div>
+  <div class="card" data-audio="audio/Counting/Male/panch.wav" data-word="پانچ" data-alt="5">پانچ (5)</div>
+  <div class="card" data-audio="audio/Counting/Male/chay.wav" data-word="چھ" data-alt="6">چھ (6)</div>
+  <div class="card" data-audio="audio/Counting/Male/saath.wav" data-word="سات" data-alt="7">سات (7)</div>
+  <div class="card" data-audio="audio/Counting/Male/aath.wav" data-word="آٹھ" data-alt="8">آٹھ (8)</div>
+  <div class="card" data-audio="audio/Counting/Male/no.wav" data-word="نو" data-alt="9">نو (9)</div>
+</div>
+
+<button id="startBtn" disabled>Start Practice</button>
+
+<div id="feedback"></div>
+
+<script>
+  const cards = document.querySelectorAll('.card');
+  const feedback = document.getElementById('feedback');
+  const startBtn = document.getElementById('startBtn');
+
+  let currentWord = '';
+  let currentAlt = '';
+  const audio = new Audio();
+
+  // Speech Recognition setup
+  let recognition;
+  let recognizing = false;
+  if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+    feedback.style.color = 'red';
+    feedback.textContent = 'Your browser does not support the Web Speech API. Please use Chrome.';
+  } else {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    recognition = new SpeechRecognition();
+    recognition.lang = 'ur-PK';
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+
+    recognition.onresult = (event) => {
+      const spoken = event.results[0][0].transcript.trim();
+      console.log('Recognized:', spoken);
+
+      if (spoken === currentWord || spoken === currentAlt) {
+        feedback.style.color = 'green';
+        feedback.textContent = 'Correct! You said it perfectly.';
+      } else {
+        feedback.style.color = 'red';
+        feedback.textContent = `Not correct. You said "${spoken}". Try again.`;
+      }
+      recognizing = false;
+      startBtn.disabled = false;
+      startBtn.textContent = 'Start Practice';
+    };
+
+    recognition.onerror = (event) => {
+      feedback.style.color = 'red';
+      feedback.textContent = 'Error occurred, please try again.';
+      recognizing = false;
+      startBtn.disabled = false;
+      startBtn.textContent = 'Start Practice';
+    };
+
+    recognition.onend = () => {
+      // Automatically reset if recognition ended unexpectedly
+      if (recognizing) {
+        recognizing = false;
+        startBtn.disabled = false;
+        startBtn.textContent = 'Start Practice';
+      }
+    };
+  }
+
+  // Play audio and set current words on card click
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      currentWord = card.getAttribute('data-word');
+      currentAlt = card.getAttribute('data-alt');
+      const audioSrc = card.getAttribute('data-audio');
+
+      // Fix: clear and load audio properly
+      audio.pause();
+      audio.currentTime = 0;
+      audio.src = audioSrc;
+      audio.play().catch(e => {
+        console.error('Audio playback failed:', e);
+        feedback.style.color = 'red';
+        feedback.textContent = 'Audio not found or failed to play.';
+      });
+
+      feedback.style.color = 'black';
+      feedback.textContent = `Now try saying "${currentWord}" (or its number ${currentAlt}).`;
+      startBtn.disabled = false;
+      startBtn.textContent = 'Start Practice';
+    });
+  });
+
+  // Start/stop speech recognition
+  startBtn.addEventListener('click', () => {
+    if (recognizing) {
+      recognition.stop();
+      startBtn.textContent = 'Start Practice';
+      recognizing = false;
+    } else {
+      if (!currentWord) {
+        feedback.style.color = 'red';
+        feedback.textContent = 'Please select a number first.';
+        return;
+      }
+      recognition.start();
+      recognizing = true;
+      startBtn.textContent = 'Listening...';
+      feedback.textContent = `Speak "${currentWord}" now.`;
+      startBtn.disabled = true;
+    }
+  });
+</script>
+
+ <%- include('partials/footer') %>
+
+</body>
+</html>

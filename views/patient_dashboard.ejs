@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+    <meta charset="UTF-8" />
+    <title>Your Dashboard - Speak Easy</title>
+      <link rel="stylesheet" href="/styles/shared.css" />
+    <link rel="stylesheet" href="/styles/navbtn.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8fdfd;
+            padding: 40px;
+            color: #333;
+        }
+
+        #h1 {
+            color: #008080;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #008080;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #008080;
+            padding-bottom: 5px;
+        }
+
+        .lesson {
+            background: white;
+            padding: 20px;
+            border-left: 5px solid #008080;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .lesson h3 {
+            margin: 0 0 10px;
+        }
+
+        .lesson p {
+            margin: 5px 0;
+        }
+
+        .file-list {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+
+        .file-list li {
+            margin-bottom: 8px;
+        }
+
+        .no-lessons {
+            font-style: italic;
+            color: #666;
+        }
+
+        form.upload-form {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #ccc;
+        }
+
+        input[type="file"] {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        #nbutton {
+            background-color: #008080;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #nbutton:hover {
+            background-color: #006666;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        .response-preview {
+            margin-top: 10px;
+        }
+
+        .feedback-box {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #e0f7f7;
+            border-left: 4px solid #008080;
+            border-radius: 4px;
+        }
+
+        textarea.feedback-textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            resize: vertical;
+        }
+        
+    </style>
+</head>
+<body>
+             <%- include('partials/header') %>
+
+    <h1 id="h1">خوش آمدید، <%= patient ? patient.name : 'مریض' %></h1>
+
+    <h2>آپ کو تفویض کردہ اسباق</h2>
+
+    <% if (!lessons || lessons.length === 0) { %>
+        <p class="no-lessons">ابھی کوئی سبق تفویض نہیں کیا گیا۔ براہ کرم بعد میں دوبارہ چیک کریں۔</p>
+    <% } else { %>
+        <% lessons.forEach(lesson => { %>
+            <div class="lesson">
+                <h3><%= lesson.title %> (<%= lesson.lessonType %>)</h3>
+                <p><%= lesson.content %></p>
+                <p><small>تفویض کی تاریخ: <%= lesson.assignedDate ? new Date(lesson.assignedDate).toLocaleDateString('ur-PK') : 'معلوم نہیں' %></small></p>
+                <p><small>آخری تاریخ: <%= lesson.dueDate ? new Date(lesson.dueDate).toLocaleDateString('ur-PK') : 'مقرر نہیں' %></small></p>
+
+                <% if (lesson.files && lesson.files.length > 0) { %>
+                    <p><strong>منسلکہ فائلیں:</strong></p>
+                    <ul class="file-list">
+                        <% lesson.files.forEach(file => { %>
+                            <li>
+                                <a href="/uploads/<%= file %>" target="_blank"><%= file %></a>
+                                <% if (file.endsWith('.mp3')) { %>
+                                    <br><audio controls src="/uploads/<%= file %>"></audio>
+                                <% } %>
+                            </li>
+                        <% }) %>
+                    </ul>
+                <% } %>
+
+                <!-- Upload Response Form -->
+                <form class="upload-form" action="/upload-response/<%= lesson._id %>" method="POST" enctype="multipart/form-data">
+                    <label for="response-<%= lesson._id %>">اپنا ویڈیو/آڈیو جواب اپ لوڈ کریں:</label>
+                    <input type="file" name="response" id="response-<%= lesson._id %>" accept="video/*,audio/*" required />
+                    <button id="nbutton" type="submit">اپ لوڈ کریں</button>
+                </form>
+
+                <!-- Response preview -->
+                <% if (lesson.responseFile) { %>
+                    <div class="response-preview">
+                        <p><strong>آپ کا جمع کردہ جواب:</strong></p>
+                        <% if (lesson.responseFile.endsWith('.mp4') || lesson.responseFile.endsWith('.webm')) { %>
+                            <video controls width="320" src="/uploads/<%= lesson.responseFile %>"></video>
+                        <% } else if (lesson.responseFile.endsWith('.mp3') || lesson.responseFile.endsWith('.wav')) { %>
+                            <audio controls src="/uploads/<%= lesson.responseFile %>"></audio>
+                        <% } else { %>
+                            <a href="/uploads/<%= lesson.responseFile %>" target="_blank"><%= lesson.responseFile %></a>
+                        <% } %>
+                    </div>
+                <% } %>
+
+                <!-- Therapist feedback display -->
+                <% if (lesson.therapistFeedback) { %>
+                    <div class="feedback-box">
+                        <strong>Therapist Feedback:</strong>
+                        <p><%= lesson.therapistFeedback %></p>
+                    </div>
+                <% } else { %>
+                    <p style="font-style: italic; color: gray;">Therapist has not provided feedback yet.</p>
+                <% } %>
+
+              
+                
+            </div>
+        <% }) %>
+    <% } %>
+             <%- include('partials/footer') %>
+
+</body>
+</html>

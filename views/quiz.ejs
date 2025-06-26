@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urdu Speech Therapy Quiz</title>
+    <link rel="stylesheet" href="/styles/style.css"> <!-- Link to the CSS file -->
+</head>
+<body>
+
+    <h1>Urdu Speech Therapy Quiz</h1>
+
+    <!-- Instructions Section -->
+    <div id="instructions" style="text-align: left; width: 60%; margin: 20px auto; font-size: 1.2rem; color: #333;">
+        <h2>Instructions:</h2>
+        <ul>
+            <li>Please select a difficulty level (Easy, Medium, or Hard) from the dropdown below.</li>
+            <li>For each question, listen carefully and pronounce the word or sentence correctly.</li>
+            <li>After completing the quiz, your results will be displayed, including your score and pronunciation mistakes.</li>
+            <li>If you make any mistakes, try focusing on the specific letter or word you mispronounced.</li>
+            <li>For further improvement, you can take an appointment with a therapist.</li>
+        </ul>
+    </div>
+
+    <!-- Quiz Container -->
+    <div id="quizContainer">
+        <label for="level">Select Quiz Level:</label>
+        <select id="level">
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+        </select>
+
+        <button id="startQuizBtn">Start Quiz</button>
+
+        <!-- Question and Speech Button -->
+        <div id="questionSection">
+            <p id="question">Please select your quiz level to begin.</p>
+            <button id="startSpeech" style="display:none;">Start Speaking</button>
+        </div>
+
+        <!-- Results Section (hidden initially) -->
+        <div id="results">
+            <h2>Your Results:</h2>
+            <p id="score"></p>
+            <div id="mistakes">
+                <h3>Pronunciation Mistakes:</h3>
+                <!-- Mistakes will be listed here dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <script src="/javascripts/script.js"></script> <!-- Link to the JavaScript file -->
+    <script>
+    const userId = "<%= user_id %>";
+    localStorage.setItem('user_id', userId);
+</script>
+
+</body>
+</html>

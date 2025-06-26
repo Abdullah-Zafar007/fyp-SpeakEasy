@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/styles/interface.css">
+    <link rel="stylesheet" href="/styles/navbtn.css">
+    <link rel="stylesheet" href="/styles/shared.css">
+    <link rel="stylesheet" href="/styles/sidebar.css">
+  <style>
+    :root {
+    --primary-color: #008080; /* Teal */
+    --secondary-color: #e9f5f5; /* Light Teal */
+    --text-color: #3b3b3b;     /* Dark Grey */
+}
+
+/* Global Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    background-color: var(--secondary-color);
+}
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
+/* Content Area */
+.content {
+    margin-left: 250px;
+    padding: 20px;
+    width: 100%;
+    transition: margin-left 0.3s ease;
+    background-color: var(--secondary-color);
+}
+
+.content.shift {
+    margin-left: 0;
+}
+
+/* Card Grid */
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+/* Card Styles */
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: calc(33.33% - 20px);
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+.card h3 {
+    color: var(--primary-color);
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: var(--text-color);
+}
+
+/* ========================
+   Responsive Design
+========================= */
+
+/* Tablets */
+@media (max-width: 992px) {
+    .card {
+        width: calc(50% - 20px);
+    }
+
+    .card h3 {
+        font-size: 20px;
+    }
+
+    .card p {
+        font-size: 14px;
+    }
+
+    .content {
+        margin-left: 200px;
+    }
+}
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+    .card {
+        width: 100%;
+    }
+
+    .card h3 {
+        font-size: 18px;
+    }
+
+    .card p {
+        font-size: 13px;
+    }
+
+    .content {
+        margin-left: 0;
+        padding: 15px;
+    }
+}
+
+/* Very Small Screens */
+@media (max-width: 480px) {
+    .card {
+        padding: 15px;
+    }
+
+    .card h3 {
+        font-size: 16px;
+    }
+
+    .card p {
+        font-size: 12px;
+    }
+}
+
+</style>
+
+</head>
+<body>
+    <%- include('partials/header') %>
+    <div class="container">
+     
+
+
+   
+  
+
+
+       
+        <main class="content" id="content">
+    <section class="header">
+        <h2>Welcome</h2>
+        <h3>Journey toward better communication starts here</h3>
+        <p>Access your lessons, track your progress, take quizzes, and book appointments.</p>
+         <%- include('partials/navbtn') %>
+    </section>
+
+  
+
+    <section class="cards">
+        <div class="card" id="add-therapist">
+            <h3>Add Therapists </h3>
+            <p>Explore interactive lessons to improve your Urdu pronunciation, from basics to advanced.</p>
+        </div>
+        <div class="card" id="Add-lessons">
+            <h3>Add Lessons</h3>
+            <p>Engage in fun speech therapy games designed to enhance your pronunciation skills.</p>
+        </div>
+        <div class="card" id="patient-report">
+            <h3>View Patient Reports</h3>
+            <p>Take quizzes to test your Urdu pronunciation accuracy and receive detailed feedback.</p>
+        </div>
+        <div class="card" id="listoftherapist">
+            <h3>View Therapists</h3>
+            <p>View your performance reports to track progress and identify areas for improvement.</p>
+          
+        </div>
+       
+    </section>
+</main>
+    </div></div>
+       <%- include('partials/footer') %>
+</body>
+<script>
+  document.getElementById("Add-lessons").addEventListener("click", () => window.location.href = "/add-template");
+    document.getElementById("add-therapist").addEventListener("click", () => window.location.href = "/addtherapist");
+    document.getElementById("patient-report").addEventListener("click", () => window.location.href = "/patientdetail");
+    document.getElementById("listoftherapist").addEventListener("click", () => window.location.href = "/readaddtherapist");
+    
+
+    </script>
+    <!-- <script src="/javascripts/sidebar.js"></script> -->
+</html>

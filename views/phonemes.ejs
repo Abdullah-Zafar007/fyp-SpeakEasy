@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech Therapy UI</title>
+    <link rel="stylesheet" href="/styles/words.css">
+    <!-- <link rel="stylesheet" href="/styles/sidebar.css"> -->
+    <link rel="stylesheet" href="/styles/shared.css">
+    <link rel="stylesheet" href="/styles/navbtn.css">
+   <style>
+.top {
+    padding-left: 190px;
+}
+
+.top h2,
+.top h3,
+.top p {
+    margin-bottom: 10px;
+}
+
+/* Responsive adjustment for tablets and below */
+@media screen and (max-width: 768px) {
+    .top {
+        padding-left: 20px; /* Reduced padding for smaller screens */
+        padding-right: 20px; /* Optional: add some right padding too */
+    }
+
+    .top h2 {
+        font-size: 1.8rem;
+    }
+
+    .top h3 {
+        font-size: 1.3rem;
+    }
+
+    .top p {
+        font-size: 1rem;
+    }
+}
+
+/* Extra-small mobile devices */
+@media screen and (max-width: 480px) {
+    .top {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .top h2 {
+        font-size: 1.5rem;
+    }
+
+    .top h3 {
+        font-size: 1.1rem;
+    }
+
+    .top p {
+        font-size: 0.95rem;
+    }
+}
+#practice{
+     background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    margin-left: 300px;
+width: 50%;}
+   </style>
+    
+</head>
+
+<body>       
+       <%- include('partials/header') %>
+
+    <div class="container">
+        
+
+       
+        <main class="content">
+           <section class="top">
+        <h2>Welcome</h2>
+        <h3>Journey toward better communication starts here</h3>
+        <p>Access your lessons, track your progress, take quizzes, and book appointments.</p>
+         <%- include('partials/navbtn') %>
+    </section>
+      
+
+           
+            <div class="main-card">
+              
+           
+
+            
+            <section class="cards">
+                <div class="card" data-audio="Alif.wav">ا</div>
+                <div class="card" data-audio="bay.wav">ب</div>
+                <div class="card" data-audio="pey.wav">پ</div>
+                <div class="card" data-audio="tey.wav">ت</div>
+                <div class="card" data-audio="tay.wav">ٹ</div>
+                <div class="card" data-audio="say.wav">ث</div>
+                <div class="card" data-audio="jeem.wav">ج</div>
+                <div class="card" data-audio="chay.wav">چ</div>
+                <div class="card" data-audio="hay.wav">ح</div>
+                <div class="card" data-audio="khay.wav">خ</div>
+                <div class="card" data-audio="daal.wav">د</div>
+                <div class="card" data-audio="d'aal.wav">ڈ</div>
+                <div class="card" data-audio="zaal.wav">ذ</div>
+                <div class="card" data-audio="rey.wav">ر</div>
+                <div class="card" data-audio="a ray.wav">ڑ</div>
+                <div class="card" data-audio="zey.wav">ز</div>
+                <div class="card" data-audio="say.wav">ژ</div>
+                <div class="card" data-audio="seen.wav">س</div>
+                <div class="card" data-audio="sheen.wav">ش</div>
+                <div class="card" data-audio="suad.wav">ص</div>
+                <div class="card" data-audio="zuad.wav">ض</div>
+                <div class="card" data-audio="to ay.wav">ط</div>
+                <div class="card" data-audio="zo ay.wav">ظ</div>
+                <div class="card" data-audio="ayn.wav">ع</div>
+                <div class="card" data-audio="ghyn.wav">غ</div>
+                <div class="card" data-audio="fay.wav">ف</div>
+                <div class="card" data-audio="kaaf.wav">ق</div>
+                <div class="card" data-audio="kaaf.wav">ک</div>
+                <div class="card" data-audio="gaaf.wav">گ</div>
+                <div class="card" data-audio="laam.wav">ل</div>
+                <div class="card" data-audio="meem.wav">م</div>
+                <div class="card" data-audio="noon.wav">ن</div>
+                <div class="card" data-audio="wao.wav">و</div>
+                <div class="card" data-audio="hey.wav">ہ</div>
+                <div class="card" data-audio="hamza.wav">ء</div>
+                <div class="card" data-audio="bri ye.wav">ی</div>
+                <div class="card" data-audio="bri ye.wav">ے</div> 
+             
+
+            </div>
+                                <button id="practice">Lets Have Some Practice</button>
+
+            </section>
+           
+        </main>
+    </div>
+             <%- include('partials/footer') %>
+
+
+</body><script>
+    // Add event listeners to each card
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+        card.addEventListener('click', function() {
+            const audioFile = this.getAttribute('data-audio');
+            const audio = new Audio(`/audio/haroof/${audioFile}`);
+            audio.play();
+        });
+    });
+        document.getElementById("practice").addEventListener("click", () => window.location.href = "/alphabets");
+
+</script>
+<!-- <script src="/javascripts/sidebar.js"></script> -->

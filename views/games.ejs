@@ -1,0 +1,37 @@
+<!-- views/sound-matching.ejs -->
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>آوازیں ملاؤ - Sound Matching Game</title>
+  <link rel="stylesheet" href="/styles/game.css">
+  <link rel="stylesheet" href="/styles/navbtn.css">
+
+</head>
+<body>
+
+  <div class="game-container">
+    <h1>آواز سے صحیح تصویر ملائیں</h1>
+ <%- include('partials/navbtn') %>
+    <div class="sound-box">
+      <button id="play-sound">🔊 آواز سنیں</button>
+    </div>
+
+   <div class="options" id="options-container">
+  <!-- Options will be loaded dynamically -->
+</div>
+
+<div id="feedback"></div>
+
+<button id="next-btn" style="display: none;">⬅️ اگلا لفظ</button>
+<button id="restart-btn" style="display: none;">🔄 دوبارہ شروع کریں</button>
+
+
+
+
+  <audio id="sound" src="/audio/haroof/bay.wav"></audio>
+  
+</body>
+<script src="/javascripts/sound-matching.js"></script>
+</html>

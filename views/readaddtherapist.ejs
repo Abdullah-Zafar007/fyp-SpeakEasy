@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Therapist Cards</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/styles/shared.css" />
+    <link rel="stylesheet" href="/styles/navbtn.css">
+    <style>
+        :root {
+            --primary-color: #008080;
+            --secondary-color: #e9f5f5;
+            --text-color: #3b3b3b;
+        }
+    </style>
+</head>
+<body class="bg-[var(--secondary-color)] text-[var(--text-color)] font-[Poppins] min-h-screen flex flex-col">
+     <%- include('partials/header') %>
+              <%- include('partials/navbtn') %>
+
+    <div class="w-full h-full p-10">
+        
+        <div class="users flex gap-6 flex-wrap justify-center">
+            <% if(users.length > 0) { %>
+                <% users.forEach(function(user) { %>
+                    
+                    <div class="user w-72 bg-white rounded-lg shadow-md p-4 hover:bg-[#5dafaf] transition-all">
+                        <div class="w-full h-52 bg-gray-200 rounded-lg overflow-hidden">
+                            <img class="w-full h-full object-cover" src="/uploads/<%= user.image %>" alt="Therapist Image">
+
+                        </div>
+                        <h3 class="text-xl font-semibold mt-3 text-[var(--primary-color)] tracking-tighter"><%= user.name %></h3>
+                        <h5 class="text-gray-600"><%= user.email %></h5>
+                        <!-- Specialization and Experience -->
+                        <p class="text-sm text-gray-500 mb-2"><strong>Specialization:</strong> <%= user.specialization || "Not specified" %></p>
+                        <p class="text-sm text-gray-500 mb-2"><strong>Experience:</strong> <%= user.experience || "0" %> years</p>
+                        <!-- Rating -->
+                        <% if (user.rating) { %>
+                            <p class="text-sm text-gray-500 mb-4">
+                                <strong>Rating:</strong> 
+                                <span class="text-yellow-400">
+                                    <% for (let i = 0; i < Math.floor(user.rating); i++) { %>★<% } %>
+                                    <% for (let i = Math.floor(user.rating); i < 5; i++) { %>☆<% } %>
+                                </span> (<%= user.rating %>/5)
+                            </p>
+                        <% } %>
+<% if (loggedInUser && loggedInUser.role === 'admin') { %>
+  <div class="flex gap-4 mt-6">
+    <a class="text-[var(--primary-color)] font-medium hover:underline" href="/edit/<%= user._id %>">Edit</a>
+    <a class="text-red-500 font-medium hover:underline" href="/delete/<%= user._id %>">Delete</a>
+  </div>
+<% } %>
+
+                    </div>
+                   
+                <% }) %>
+            <% } else { %>
+                <h1 class="text-xl text-center text-gray-500">No therapists available</h1>
+            <% } %>
+        </div>
+    </div>
+     <%- include('partials/footer') %>
+</body>
+
+</html>

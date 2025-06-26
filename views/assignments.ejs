@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Dashboard - Speak Easy</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8fdfd;
+            padding: 40px;
+            color: #333;
+        }
+
+        h1 {
+            color: #008080;
+            margin-bottom: 30px;
+        }
+
+        .lesson {
+            background: white;
+            padding: 20px;
+            border-left: 5px solid #008080;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .lesson h3 {
+            margin: 0 0 10px;
+        }
+
+        .lesson p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome, <%= patient.name %></h1>
+
+    <h2>Your Assigned Lessons</h2>
+    <% if (lessons.length === 0) { %>
+        <p>No lessons assigned yet. Please check back later.</p>
+    <% } else { %>
+        <% lessons.forEach(lesson => { %>
+            <div class="lesson">
+                <h3><%= lesson.title %> (<%= lesson.lessonType %>)</h3>
+                <p><%= lesson.content %></p>
+                <p><small>Assigned on: <%= new Date(lesson.assignedDate).toLocaleDateString() %></small></p>
+            </div>
+        <% }) %>
+    <% } %>
+</body>
+</html>
