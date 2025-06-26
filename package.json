@@ -2,7 +2,11 @@
   "name": "ust",
   "version": "1.0.0",
   "main": "server.js",
+<<<<<<< HEAD
  "scripts": {
+=======
+   "scripts": {
+>>>>>>> 011271f (Replaced bcrypt with bcryptjs and updated project)
   "start": "node server.js"
   },
   "keywords": [],
@@ -10,7 +14,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "bcrypt": "^5.1.1",
+    "bcryptjs": "^3.0.2",
     "body-parser": "^1.20.3",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",

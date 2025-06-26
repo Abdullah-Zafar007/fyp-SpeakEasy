@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const User = require("./models/User"); // ✅ Adjust path if needed
 
 // ✅ Replace this with your actual MongoDB URI

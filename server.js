@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require("express");
 
 
+
 const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path");
@@ -16,7 +17,7 @@ const LessonTemplate = require("./models/LessonTemplate");
 const nodemailer = require("nodemailer");
 const crypto = require("crypto");
 const User = require("./models/User"); // if not already imported
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 
 
 
